@@ -1,6 +1,8 @@
 import React from 'react';
 import './header.css'; // For styling
 import Logo from '../../logo.jpg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 
 const Header = () => {
@@ -17,13 +19,19 @@ const Header = () => {
                 </div>
                 <nav className="header_nav p-item">
                     <ul className="header_nav-list">
-                        <li><a href="#home">Home</a></li>
                         <li><a href="#about">About</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#programmes">Programmes</a></li>
+                        <li><a href="#forms">Forms</a></li>
+                        <li><a href="#Publications">Publications</a></li>
+                        <li><a href="#vacancies">Vacancies</a></li>
                         <li><a href="#contact">Contact</a></li>
+                        <li><a href="#FAQ">FAQ</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
                     </ul>
                 </nav>
                 <div className="search p-item">
-                    <i className="" aria-hidden="true"></i>
+                    <FontAwesomeIcon icon={faMagnifyingGlass} />
                 </div>
             </div>
         </header>
