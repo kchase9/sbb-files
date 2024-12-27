@@ -4,6 +4,7 @@ body {
     background-position: center center;
     background-size: cover; 
     background-repeat: no-repeat;
+    background-attachment: fixed;
     position: relative; 
     margin: 0; 
     height: 100vh; 
@@ -32,9 +33,12 @@ body::before {
 .welcome-forms{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 .welcome-form{
+    width: 30%;
+    height: fit-content;
     background-color: white;
     padding: 36px;
 }
@@ -44,4 +48,9 @@ body::before {
     font-family: 'EB Garamond', 'Times New Roman', Times, serif;
     color: #686868;
     font-size: 32px;
+    font-weight: 300;
+}
+
+hr{
+    width: 1px;
 }

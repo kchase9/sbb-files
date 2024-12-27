@@ -38,12 +38,10 @@
 }
 
 
-/* Personal CSS */
+/* Personal CSS, global styling */
 
 .page{
   padding: 86px;
-  width: 100vw;
-  height: 100vh;
 }
 
 form {
@@ -53,17 +51,42 @@ form {
 }
 
 /* Style all input types */
-form :is(input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="url"], input[type="tel"], input[type="search"], input[type="date"], input[type="time"], input[type="checkbox"], input[type="radio"]) {
+form :is(input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="url"], input[type="tel"], input[type="search"], input[type="date"], input[type="time"], input[type="checkbox"], input[type="radio"], select, option) {
   padding: 10px; 
   border: 1px solid #ccc; 
   border-radius: 4px; 
-  font-size: 16px;
+  font-size: 14px;
   outline: none; 
   transition: border-color 0.3s; 
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
 /* Add focus effect */
-form :is(input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="url"], input[type="tel"], input[type="search"], input[type="date"], input[type="time"], input[type="checkbox"], input[type="radio"]):focus {
+form :is(input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="url"], input[type="tel"], input[type="search"], input[type="date"], input[type="time"], input[type="checkbox"], input[type="radio"], select, option):focus {
   border-color: #007bff; /* Change border color on focus */
   box-shadow: 0 0 4px rgba(0, 123, 255, 0.5); /* Optional focus shadow */
+}
+
+button{
+  width: auto;
+  align-self: center;
+  padding: 10px 16px;
+  font-size: 12px;
+  font-family: 'EB Garamond', 'Times New Roman', Times, serif;
+  text-transform: uppercase;
+  font-weight: 500;
+  border: solid 1px;
+  border-radius: 4px;
+}
+
+button.btn-green{
+  background-color: #1e865c;
+  border-color: #124c34;
+  color: white;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
