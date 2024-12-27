@@ -1,0 +1,48 @@
+.header {
+    display: flex;
+    flex-direction: column;
+}
+
+.secondary-header{
+    display: flex;
+    justify-content: left;
+    color: white;
+    background-color: #EF812D;
+    padding: 0px 15px;
+    margin: 0px;
+    font-size: 15px;
+}
+
+.secondary-header p{
+    margin: 4px 0;
+}
+
+.primary-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 4px;
+    background-color: white;
+    color: #444444;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.primary-header a{
+    text-decoration: none;
+    color: #444444;
+    font-weight: 500;
+}
+
+.header_nav-list{
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+}
+
+.header_nav-list li{
+    margin: 0 12px;
+}
+
+.primary-header .p-item{
+    padding: 0px 36px;
+}
