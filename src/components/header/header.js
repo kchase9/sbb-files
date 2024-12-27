@@ -1,5 +1,7 @@
 import React from 'react';
 import './header.css'; // For styling
+import Logo from '../../logo.jpg';
+
 
 const Header = () => {
     return (
@@ -10,7 +12,7 @@ const Header = () => {
             <div className="primary-header">
                 <div className="header_logo p-item">
                     <a href="https://sbb.gov.gy/">
-                        <img src="src/logo.jpg" alt="Logo" /> {/* fix img */}
+                        <img src={Logo} alt="Logo" /> {/* fix img */}
                     </a>
                 </div>
                 <nav className="header_nav p-item">

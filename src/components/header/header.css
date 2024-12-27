@@ -20,11 +20,17 @@
 .primary-header {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: space-around;
     padding: 4px;
     background-color: white;
     color: #444444;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.primary-header img{
+    height: 80px;
+    width: auto;
 }
 
 .primary-header a{
