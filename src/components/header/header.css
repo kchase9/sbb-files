@@ -1,6 +1,7 @@
 .header {
     display: flex;
     flex-direction: column;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
 .secondary-header{
@@ -53,4 +54,35 @@
 
 .primary-header .p-item{
     padding: 0px 36px;
+}
+
+/* Dropdown */
+
+.dropdown {
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    z-index: 1000;
+}
+
+/* Font styling */
+.dropdown li a{
+    font-size: 13.5px;
+    color: #0000008C;
+    text-decoration: none;
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+}
+
+.dropdown li {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+
+.dropdown li:hover {
+    background-color: #f4f4f4;
 }
