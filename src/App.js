@@ -8,6 +8,7 @@ import RequestDocumentChange from './pages/request-document-change/request-docum
 import RequestAppointment from './pages/request-appointment/request-appointment.js';
 import SBRegistration from './pages/sb-registration/sb-registration.js';
 import ClientReviewApp from './pages/review-application/client/client-review-app.js';
+import AdminReviewApp from './pages/review-application/admin/admin-review-app.js';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
                 <Route path="/request-appointment" element={<RequestAppointment />} />
                 <Route path="/sb-registration" element={<SBRegistration />} />
                 <Route path="/client-review-app" element={<ClientReviewApp />} />
+                <Route path="/admin-review-app" element={<AdminReviewApp />} />
                 {/* Add other routes here */}
             </Routes>
         </Router>

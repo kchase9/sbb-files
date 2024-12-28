@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Containers from '../../../components/containers/containers.js';
-import './client-review-app.css';
+import './admin-review-app.css';
 
 // YOU GET THE GIST
 
@@ -110,7 +110,7 @@ const dummyData = {
     },
 };
 
-const ClientReviewApp= () =>{
+const AdminReviewApp= () =>{
     const [owners, setOwners] = useState([
         {
             id: 1,
@@ -963,19 +963,6 @@ const ClientReviewApp= () =>{
                         </div>
                     </div>
                 </Containers>
-                
-                <div className=''>
-                    <div className='sect-container green-border'>
-                        <div className='row'>
-                            <h2>Application Status</h2>
-                            <p>Pending</p>
-                        </div>
-                        <div className='row'>
-                            <h2>Comments</h2>
-                            <p>None</p>
-                        </div>
-                    </div>
-                </div>
 
                 <div className='btn-container'>
                     <a className='btn btn-red'>Delete</a>
@@ -988,4 +975,4 @@ const ClientReviewApp= () =>{
     );
 };
 
-export default ClientReviewApp;
+export default AdminReviewApp;
