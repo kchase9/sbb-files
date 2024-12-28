@@ -30,14 +30,9 @@ body::before {
     color: white;
 }
 
-.welcome-forms{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
 
 .welcome-form{
-    width: 30%;
+    width: 35%;
     height: fit-content;
     background-color: white;
     padding: 36px;
@@ -52,5 +47,18 @@ body::before {
 }
 
 hr{
-    width: 1px;
+    border: none;
+    border-top: 0.5px solid #1e865ca4;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.divider {
+    display: block;
+    width: 1px; /* Thickness of the line */
+    height: auto;
+    background-color: white;
+    color: white;
+    align-self: stretch;
+    z-index: 1000;
 }

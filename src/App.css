@@ -41,7 +41,7 @@
 /* Personal CSS, global styling */
 
 .page{
-  padding: 86px;
+  padding: 86px 86px 180px 86px;
 }
 
 form {
@@ -82,6 +82,21 @@ button{
 button.btn-green{
   background-color: #1e865c;
   border-color: #124c34;
+  color: white;
+}
+button.btn-orange{
+  background-color: #EF812D;
+  border-color: #B46122;
+  color: white;
+}
+button.btn-red{
+  background-color: #D30004;
+  border-color: #9D0003;
+  color: white;
+}
+button.btn-gray{
+  background-color: #686868;
+  border-color: #3a3a3a;
   color: white;
 }
 
