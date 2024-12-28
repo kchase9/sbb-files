@@ -27,7 +27,7 @@ const SBRApps = ()=>{
                             <p>Rejected</p>
                         </div>
                         <div className='widget-col'>
-                            <a href='' className='btn btn-green'>Review Application</a>
+                            <a href='/admin-review-app' className='btn btn-green'>Review Application</a>
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,7 @@ const SBRApps = ()=>{
                             <p>Rejected</p>
                         </div>
                         <div className='widget-col'>
-                            <a href='' className='btn btn-green'>Review Application</a>
+                            <a href='/admin-review-app' className='btn btn-green'>Review Application</a>
                         </div>
                     </div>
                 </div>
@@ -69,7 +69,7 @@ const SBRApps = ()=>{
                             <p>Rejected</p>
                         </div>
                         <div className='widget-col'>
-                            <a href='' className='btn btn-green'>Review Application</a>
+                            <a href='/admin-review-app' className='btn btn-green'>Review Application</a>
                         </div>
                     </div>
                 </div>

@@ -17,7 +17,7 @@ const AdminHome = () =>{
                         </div>
 
                         <div className='thumbnail-content'>
-                            <a href='' className='btn btn-green'>View Applications</a>
+                            <a href='/sbr-apps' className='btn btn-green'>View Applications</a>
                         </div>
                     </div>
                 </div>
@@ -28,7 +28,7 @@ const AdminHome = () =>{
                         </div>
 
                         <div className='thumbnail-content'>
-                            <a href='' className='btn btn-green'>View Requests</a>
+                            <a href='/appt-schedules' className='btn btn-green'>View Requests</a>
                         </div>
                     </div>
                 </div>
@@ -39,7 +39,7 @@ const AdminHome = () =>{
                         </div>
 
                         <div className='thumbnail-content'>
-                            <a href='' className='btn btn-green'>View Requests</a>
+                            <a href='/doc-change-review' className='btn btn-green'>View Requests</a>
                         </div>
                     </div>
                 </div>

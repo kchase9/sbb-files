@@ -23,7 +23,7 @@ const ApptSchedules = () =>{
                             <p>Rejected</p>
                         </div>
                         <div className='widget-col'>
-                            <a href='' className='btn btn-green'>Review Application</a>
+                            <a href='/admin-review-appt' className='btn btn-green'>Review Application</a>
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@ const ApptSchedules = () =>{
                             <p>Rejected</p>
                         </div>
                         <div className='widget-col'>
-                            <a href='' className='btn btn-green'>Review Application</a>
+                            <a href='/admin-review-appt' className='btn btn-green'>Review Application</a>
                         </div>
                     </div>
                 </div>
@@ -64,7 +64,7 @@ const ApptSchedules = () =>{
                             <p>Rejected</p>
                         </div>
                         <div className='widget-col'>
-                            <a href='' className='btn btn-green'>Review Application</a>
+                            <a href='/admin-review-appt' className='btn btn-green'>Review Application</a>
                         </div>
                     </div>
                 </div>
@@ -84,7 +84,7 @@ const ApptSchedules = () =>{
                             <p>Rejected</p>
                         </div>
                         <div className='widget-col'>
-                            <a href='' className='btn btn-green'>Review Application</a>
+                            <a href='/admin-review-appt' className='btn btn-green'>Review Application</a>
                         </div>
                     </div>
                 </div>
