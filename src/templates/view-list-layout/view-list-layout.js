@@ -18,13 +18,7 @@ const ViewListLayout = ({title, children}) =>{
                                 type="text" 
                                 placeholder="Search..." 
                                 className="search-input orange-border"
-                            />
-                            <select className="status-dropdown orange-border">
-                                <option value="">Approval Status</option>
-                                <option value="approved">Approved</option>
-                                <option value="pending">Pending</option>
-                                <option value="rejected">Rejected</option>
-                            </select>
+                        />
                         </div>
                         <div className='searchbar-button'>
                             <button className="btn btn-green">Search</button>
