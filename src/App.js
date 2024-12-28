@@ -5,6 +5,7 @@ import Welcome from './pages/welcome/welcome.js';
 import Home from './pages/home/home.js';
 import AddDocument from './pages/add-document/add-document.js';
 import RequestDocumentChange from './pages/request-document-change/request-document-change.js';
+import RequestAppointment from './pages/request-appointment/request-appointment.js';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
                 <Route path="/home" element={<Home />} />
                 <Route path="/add-document" element={<AddDocument />} />
                 <Route path="/change-document" element={<RequestDocumentChange />} />
+                <Route path="/request-appointment" element={<RequestAppointment />} />
                 {/* Add other routes here */}
             </Routes>
         </Router>
