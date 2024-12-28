@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Containers from '../../../components/containers/containers.js';
 import './admin-review-app.css';
 
-// YOU GET THE GIST
+// YOU GET THE GIST THIS IS INCOMPLETE WE NEED FUNCTIONALITY TO TEST IT
 
 const dummyData = {
     statusVerification: {
