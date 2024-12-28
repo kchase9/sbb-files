@@ -4,7 +4,7 @@ import './home.css'; // Include the corresponding CSS file for styling
 const Home = () => {
     return (
         <div className="page">
-    <div className="home-page ">
+            <div className="home-page ">
                 <div className='heading'>
                     <h1>Welcome</h1>
                     <p>Manage your relationship with the Guyana Small Business Bureau</p>

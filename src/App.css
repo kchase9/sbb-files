@@ -40,10 +40,12 @@
 
 /* Personal CSS, global styling */
 
+body{
+  background-color: #f1f1f1;
+}
+
 .page{
   padding: 54px 86px 180px 86px;
-  /* width: 100vw;
-  height: 100vh; */
   box-sizing: border-box;
   color: #686868;
 }
@@ -55,7 +57,7 @@ form {
 }
 
 /* Style all input types */
-form :is(input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="url"], input[type="tel"], input[type="search"], input[type="date"], input[type="time"], input[type="checkbox"], input[type="radio"], select, option) {
+form :is(input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="url"], input[type="tel"], input[type="search"], input[type="date"], input[type="time"], input[type="checkbox"], input[type="radio"],input[type="file"], select, option) {
   padding: 10px; 
   border: 1px solid #ccc; 
   border-radius: 4px; 
