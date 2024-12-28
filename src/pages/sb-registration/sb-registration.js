@@ -133,6 +133,7 @@ const SBRegistration = () =>{
                             <input type="text" name="business-type-other" placeholder="Specify Other" />
                         </div>
                     </div>
+
                     <div className="row">
                         <label htmlFor="primary-contact-name">Primary Contact Name*</label>
                         <input type="text" id="primary-contact-name" name="primary-contact-name" required />
@@ -841,11 +842,8 @@ const SBRegistration = () =>{
                 </Containers>
 
                 <div className='btn-container'>
-                    <a className='btn btn-red' >Cancel</a>
+                    <a href='/home' className='btn btn-red'>Cancel</a>
                     <button className='btn btn-green' type='submit'>Submit</button>
-                    <a href='/home' className="btn btn-gray">
-                        Home
-                    </a>
                 </div>
 
             </form>

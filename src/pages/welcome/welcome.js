@@ -12,7 +12,9 @@ const Welcome = () => {
                 {/* Sign In Form */}
                 <div className="welcome-form sign-in">
                     <form className="sign-in">
-                        <h2>Sign In.</h2>
+                        <div className='heading'>
+                            <h2>Sign In</h2>
+                        </div>
                         <input type="email" name="email" placeholder="Email" />
                         <input type="password" name="pword" placeholder="********" />
                         <button type="submit" className=" btn btn-green">Sign In</button>
@@ -24,7 +26,11 @@ const Welcome = () => {
                 {/* Sign Up Form */}
                 <div className="welcome-form sign-up">
                     <form className="sign-up">
-                        <h2>Sign Up.</h2>
+                        <div className='heading'>
+                            <h2>Sign Up.</h2>
+                            <small>Sign up to register a business you own.</small>
+                        </div>
+                        
 
                         {/* First Section */}
                         <input type="email" name="email" placeholder="Email" />
@@ -39,7 +45,6 @@ const Welcome = () => {
                         <input type="date" name="DOB" placeholder="DOB" />
 
                         <div className="row">
-                            
                             <select name="gender">
                                 <option value="">Gender</option>
                                 <option value="male">Male</option>
