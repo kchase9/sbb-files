@@ -3,6 +3,7 @@ import Header from './components/header/header.js';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Welcome from './pages/welcome/welcome.js';
 import Home from './pages/home/home.js';
+import AdminHome from './pages/admin-home/admin-home.js';
 import AddDocument from './pages/add-document/add-document.js';
 import RequestDocumentChange from './pages/request-document-change/request-document-change.js';
 import RequestAppointment from './pages/request-appointment/request-appointment.js';
@@ -26,6 +27,7 @@ function App() {
                 <Route path="/sb-registration" element={<SBRegistration />} />
                 <Route path="/client-review-app" element={<ClientReviewApp />} />
                 <Route path="/admin-review-app" element={<AdminReviewApp />} />
+                <Route path="/admin-home" element={<AdminHome />} />
                 {/* Add other routes here */}
                 <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
