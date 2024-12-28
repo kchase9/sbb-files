@@ -71,7 +71,7 @@ const Home = () => {
                     <div className='sect-container green-border'>
                     <iframe
                         src="https://calendar.google.com/calendar/embed?src=0bea85897c14e5c2a58e7bee3509c6a7d3d5a4bc1f3f5c94ef24f28d14d2d9a5%40group.calendar.google.com&ctz=America%2FGuyana"
-                        style={{ border: 0, width: "100%", height: "600px" }}
+                        style={{ border: 0, width: "100%", height: "600px" }}  title='Calendar'
                     ></iframe>
 
                     <div className='btn-container'>
@@ -151,7 +151,7 @@ const Home = () => {
                                 </div>
                                 <div>
                                     {/* This sends a tick to the database to say "hey I'm interested" */}
-                                    <a href='' className='btn btn-green'>Indicate Interest</a>
+                                    <a className='btn btn-green'>Indicate Interest</a>
                                 </div>
                             </div>
                                 

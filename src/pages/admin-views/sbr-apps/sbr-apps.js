@@ -3,7 +3,15 @@ import "./sbr-apps.css";
 import ViewListLayout from "../../../templates/view-list-layout/view-list-layout.js";
 
 // entirely dummy functions
+import axios from "axios";
+import { API_BASE_URL } from "../../../../src/config.js";
 
+    const fetchRegistrations = async () => {
+        const response = await axios.get(`/api/registrations`);
+        console.log(response.data); // Display fetched data
+    };
+
+    fetchRegistrations();
 
 const SBRApps = ()=>{
     return(
