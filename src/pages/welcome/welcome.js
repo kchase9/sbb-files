@@ -3,7 +3,8 @@ import './welcome.css';
 
 const Welcome = () => {
     return (
-        <div className="page">
+        <div className=''>
+            <div className="welcome-page page">
             <div className="welcome-title">
                 <h1>Work with us.</h1>
             </div>
@@ -90,6 +91,8 @@ const Welcome = () => {
                 </div>
             </div>
         </div>
+        </div>
+        
     );
 };
 
