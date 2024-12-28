@@ -11,6 +11,7 @@ import ReviewAppointment from './pages/review-appointment/review-appointment.js'
 import SBRegistration from './pages/sb-registration/sb-registration.js';
 import ClientReviewApp from './pages/review-application/client/client-review-app.js';
 import AdminReviewApp from './pages/review-application/admin/admin-review-app.js';
+import SBRApps from './pages/admin-views/sbr-apps/sbr-apps.js';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
                 <Route path="/client-review-app" element={<ClientReviewApp />} />
                 <Route path="/admin-review-app" element={<AdminReviewApp />} />
                 <Route path="/admin-home" element={<AdminHome />} />
+                <Route path="/sbr-apps" element={<SBRApps />} />
                 {/* Add other routes here */}
                 <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
