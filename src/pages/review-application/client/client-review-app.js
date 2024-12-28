@@ -1,8 +1,116 @@
 import React, { useState } from 'react';
-import Containers from '../../components/containers/containers.js';
-import './sb-registration.css';
+import Containers from '../../../components/containers/containers.js';
+import './client-review-app.css';
 
-const SBRegistration = () =>{
+// YOU GET THE GIST
+
+const dummyData = {
+    statusVerification: {
+        employeeCount: 'Less than 25 employees',
+        revenue: 'Gross annual revenue less than 60 million',
+        assets: 'Business assets less than twenty million',
+    },
+    businessInfo: {
+        businessName: 'ABC Enterprises',
+        tradingName: 'ABC Ltd.',
+        registrationType: ['Registered Company', 'Partnership'],
+        primaryContact: {
+            name: 'John Doe',
+            phone: '+1 234-567-8900',
+            email: 'johndoe@example.com',
+        },
+        secondaryContact: {
+            name: 'Jane Smith',
+            phone: '+1 987-654-3210',
+            email: 'janesmith@example.com',
+        },
+        addresses: {
+            physical: '123 Main Street, Cityville',
+            administrativeregion: 'Region 4',
+            trading: '456 Trading Lane, Cityville, Region 4',
+            mailing: 'PO Box 789, Cityville Post Office',
+        },
+        businessEmail: 'abdmain@abc.com',
+        businessPhone: '+1 234-567-8900',
+        businessWebsite: 'abc.com',
+        sector: 'Retail',
+        businessOutline: 'We provide retail services for household goods.',
+        industryTypes: ['Goods', 'Other Services'],
+    },
+    compliance: {
+        tin: 'TIN123456789',
+        vat: 'VAT987654321',
+        nis: 'NIS123456789',
+        dates: {
+            tinRegistered: '2022-01-01',
+            vatRegistered: '2022-02-01',
+            nisRegistered: '2022-03-01',
+        },
+        registrationLocation: 'Guyana',
+        businessCommenced: '2021-06-01',
+    },
+    ownership: [
+        {
+            id: 1,
+            fullName: 'John Doe',
+            maritalStatus: 'Single',
+            positionTitle: 'CEO',
+            gender: 'Male',
+            tin: 'TIN123456789',
+            birthdate: '1985-05-15',
+            differentlyAbled: 'No',
+            idNumber: 'ID987654321',
+            educationLevel: 'Master’s Degree',
+        },
+    ],
+    coreActivities: {
+        complianceStandards: {
+            name: 'ISO 9001',
+            number: 'ISO12345',
+            expiration: '2025-12-31',
+            details: 'Certified for quality management.',
+        },
+        dealership1: {
+            id: 'D001',
+            contact: {
+                name: 'Jane Smith',
+                phone: '+1 987-654-3210',
+                email: 'janesmith@example.com',
+            },
+            dateAppointed: '2023-01-01',
+            productsCovered: 'Electronics and household appliances.',
+        },
+    },
+    survey: {
+        clientStatus: 'Yes',
+        interactions: 'We have attended multiple training sessions hosted by SBB.',
+        servicesInterested: {
+            grantFunding: 10000,
+            administrativeSupport: true,
+            training: 'Business Management',
+            loanFunding: 50000,
+        },
+        challenges: [
+            'Cash Flow Management',
+            'Access to Finance',
+            'Marketing Strategy',
+        ],
+    },
+    declaration: {
+        ownershipControlled: 'Yes',
+        subsidiary: 'No',
+        charitablePurpose: 'No',
+        primaryApplicant: {
+            name: 'John Doe',
+            signature: 'John Doe Signature',
+            position: 'CEO',
+            date: '2023-12-01',
+        },
+        secondaryApplicant: null,
+    },
+};
+
+const ClientReviewApp= () =>{
     const [owners, setOwners] = useState([
         {
             id: 1,
@@ -61,7 +169,7 @@ const SBRegistration = () =>{
                 <h1>Small Business Registration</h1>
                 <p>Please fill out the form below</p>
             </div>
-            <form>
+            <div>
                 <Containers title='Verify your status as a Small Business'>
                     <p>
                     To qualify for registration as an Approved Small Business and be eligible for participation in the Small Business Procurement Programme,
@@ -78,13 +186,13 @@ const SBRegistration = () =>{
                     </ul>
                     <div className='list'>
                         <label>
-                            <input type="checkbox" id="number-of-employees" name="number-of-employees" value="Less than 25 employees" />Employs not more than 25 employees
+                            <input type="checkbox" id="number-of-employees" name="number-of-employees" value="Less than 25 employees" checked />Employs not more than 25 employees
                         </label>
                         <label>
-                            <input type="checkbox" id="g-a-revenue" name="g-a-revenue" value="Gross annual revenue less than 60 million" />has gross annual revenue of not more than 60 million
+                            <input type="checkbox" id="g-a-revenue" name="g-a-revenue" value="Gross annual revenue less than 60 million" checked />has gross annual revenue of not more than 60 million
                         </label>
                         <label>
-                            <input type="checkbox" id="total-business-assets" name="total-business-assets" value="Business assets less than twenty million" />Has total business assets of not more than twenty million dollars
+                            <input type="checkbox" id="total-business-assets" name="total-business-assets" value="Business assets less than twenty million" checked />Has total business assets of not more than twenty million dollars
                         </label>
                     </div><br />
                     <b>TO QUALIFY FOR REGISTRATION, YOUR BUSINESS MUST: BE REGISTERED UNDER THE COMPANIES ACT 1991, BUSINESS NAMES (REGISTRATION) ACT, PARTNERSHIP ACT, OR CO-OPERATIVE SOCIETIES ACT; NOT BE A SUBSIDIARY OR AFFILIATE OF ANOTHER COMPANY; AND MEET AT LEAST TWO OF THE CONDITIONS STATED IN SUB-SECTION F.<br /></b>
@@ -106,11 +214,11 @@ const SBRegistration = () =>{
                 <div className='list'>
                     <div className="row">
                         <label htmlFor="business-name">Business Name*</label>
-                        <input type="text" id="business-name" name="business-name" required />
+                        <p><b>{dummyData.businessInfo.businessName}</b></p>
                     </div>
                     <div className="row">
                         <label htmlFor="trading-name">Trading Name (if different)</label>
-                        <input type="text" id="trading-name" name="trading-name" />
+                        <p><b>{dummyData.businessInfo.tradingName}</b></p>
                     </div>
                     <div className="row">
                         <label>Business Registration Type*</label>
@@ -119,112 +227,124 @@ const SBRegistration = () =>{
                                 <input type="checkbox" name="business-type" value="Business Names Registration" /> Business Names Registration
                             </label>
                             <label>
-                                <input type="checkbox" name="business-type" value="Registered Company" /> Registered Company
+                                {/* Needs to be an if statement governing check */}
+                                <input type="checkbox" name="business-type" value="Registered Company" checked /> Registered Company
                             </label>
                             <label>
-                                <input type="checkbox" name="business-type" value="Partnership" /> Partnership
+                                <input type="checkbox" name="business-type" value="Partnership" checked /> Partnership
                             </label>
                             <label>
                                 <input type="checkbox" name="business-type" value="Cooperative" /> Cooperative
                             </label>
                             <label>
-                                <input type="checkbox" name="business-type" value="Other" /> Other
+                                <input type="checkbox" name="business-type" value="other" /> Other
                             </label>
                             <input type="text" name="business-type-other" placeholder="Specify Other" />
                         </div>
                     </div>
                     <div className="row">
                         <label htmlFor="primary-contact-name">Primary Contact Name*</label>
-                        <input type="text" id="primary-contact-name" name="primary-contact-name" required />
+                        <p><b>{dummyData.businessInfo.primaryContact.name}</b></p>
+
                     </div>
                     <div className="row">
                         <label htmlFor="primary-contact-phone">Primary Contact Phone*</label>
-                        <input type="tel" id="primary-contact-phone" name="primary-contact-phone" required />
+                        <p><b>{dummyData.businessInfo.primaryContact.phone}</b></p>
+
                     </div>
                     <div className="row">
                         <label htmlFor="primary-contact-email">Primary Contact Email*</label>
-                        <input type="email" id="primary-contact-email" name="primary-contact-email" required />
+                        <p><b>{dummyData.businessInfo.primaryContact.email}</b></p>
+
                     </div>
                     <div className="row">
                         <label htmlFor="secondary-contact-name">Secondary Contact Name</label>
-                        <input type="text" id="secondary-contact-name" name="secondary-contact-name" />
+                        <p><b>{dummyData.businessInfo.secondaryContact.name}</b></p>
+
                     </div>
                     <div className="row">
                         <label htmlFor="secondary-contact-phone">Secondary Contact Phone</label>
-                        <input type="tel" id="secondary-contact-phone" name="secondary-contact-phone" />
+                        <p><b>{dummyData.businessInfo.secondaryContact.phone}</b></p>
+
                     </div>
                     <div className="row">
                         <label htmlFor="secondary-contact-email">Secondary Contact Email</label>
-                        <input type="email" id="secondary-contact-email" name="secondary-contact-email" />
+                        <p><b>{dummyData.businessInfo.secondaryContact.email}</b></p>
                     </div>
                     <div className="row">
                         <label htmlFor="physical-address">Physical Address*</label>
-                        <textarea id="physical-address" name="physical-address" rows="3" required></textarea>
+                        <textarea id="physical-address" name="physical-address" rows="3" value={dummyData.businessInfo.addresses.physical}></textarea>
                     </div>
                     <div className="row">
                         <label htmlFor="administrative-region">Administrative Region*</label>
-                        <select id="administrative-region" name="administrative-region" required>
+                        <select id="administrative-region" name="administrative-region" value={dummyData.businessInfo.addresses.administrativeregion}>
                             <option value="">Select Region</option>
                             <option value="region-1">Region 1</option>
                             <option value="region-2">Region 2</option>
                             <option value="region-3">Region 3</option>
                             <option value="region-4">Region 4</option>
-                            <option value="region-1">Region 5</option>
-                            <option value="region-2">Region 6</option>
-                            <option value="region-3">Region 7</option>
-                            <option value="region-4">Region 8</option>
-                            <option value="region-3">Region 9</option>
-                            <option value="region-4">Region 10</option>
+                            <option value="region-5">Region 5</option>
+                            <option value="region-6">Region 6</option>
+                            <option value="region-7">Region 7</option>
+                            <option value="region-8">Region 8</option>
+                            <option value="region-9">Region 9</option>
+                            <option value="region-10">Region 10</option>
                             {/* Add other regions */}
                         </select>
                     </div>
                     <div className="row">
                         <label htmlFor="trading-address">Trading Address (if different)</label>
-                        <textarea id="trading-address" name="trading-address" rows="3"></textarea>
+                        <textarea id="physical-address" name="physical-address" rows="3" value={dummyData.businessInfo.addresses.trading}></textarea>
+
                     </div>
                     <div className="row">
                         <label htmlFor="mailing-address">Mailing Address (if different)</label>
-                        <textarea id="mailing-address" name="mailing-address" rows="3"></textarea>
+                        <textarea id="physical-address" name="physical-address" rows="3" value={dummyData.businessInfo.addresses.mailing}></textarea>
+
                     </div>
                     <div className="row">
-                        <label htmlFor="business-email">Business Email Address*</label>
-                        <input type="email" id="business-email" name="business-email" required />
+                        <label htmlFor="business-email">Business Email Address*</label>                        
+                        <p><b>{dummyData.businessInfo.businessEmail}</b></p>
+
                     </div>
                     <div className="row">
                         <label htmlFor="business-website">Business Website</label>
-                        <input type="url" id="business-website" name="business-website" />
+                        <p><b>{dummyData.businessInfo.businessWebsite}</b></p>
+
                     </div>
                     <div className="row">
                         <label htmlFor="business-phone">Business Phone Number*</label>
-                        <input type="tel" id="business-phone" name="business-phone" required />
+                        <p><b>{dummyData.businessInfo.businessPhone}</b></p>
+
                     </div>
                     <div className="row">
                         <label htmlFor="primary-business-sector">Primary Business Sector*</label>
-                        <input type="text" id="primary-business-sector" name="primary-business-sector" required />
+                        <p><b>{dummyData.businessInfo.sector}</b></p>
                     </div>
                     <div className="row">
                         <label htmlFor="business-outline">Business Outline*</label>
-                        <textarea id="business-outline" name="business-outline" rows="4" required></textarea>
+                        <textarea id="business-outline" name="business-outline" rows="4" value={dummyData.businessInfo.businessOutline}></textarea>
                     </div>
                     <div className="row">
                         <label>Industry Types*</label>
                         <div className='list'>
+                            {/* Dont forget if statement for checked */}
                             <label>
                                 <input type="checkbox" name="industry-type" value="works" /> Works
                             </label>
                             <label>
-                                <input type="checkbox" name="industry-type" value="goods" /> Goods
+                                <input type="checkbox" name="industry-type" value="goods" checked/> Goods
                             </label>
                             <label>
                                 <input type="checkbox" name="industry-type" value="consulting-services" /> Consulting Services
                             </label>
                             <label>
-                                <input type="checkbox" name="industry-type" value="other-services" /> Other Services
+                                <input type="checkbox" name="industry-type" value="other-services" checked/> Other Services
                             </label>
                             <label>
-                                <input type="checkbox" name="industry-type" value="other" /> Other
+                                <input type="checkbox" name="industry-type" value="other" checked/> Other
                             </label>
-                            <input type="text" name="industry-type-other" placeholder="Specify Other" />
+                            <input type="text" name="industry-type-other" placeholder="Specify Other" value={'idk, something'}/>
                         </div>
                     </div>
                 </div>
@@ -239,39 +359,43 @@ const SBRegistration = () =>{
                     <div className='list'>
                         <div className="row">
                             <label htmlFor="business-tin">Business TIN*</label>
-                            <input type="text" id="business-tin" name="business-tin" required />
+                            <p><b>{dummyData.compliance.tin}</b></p>
+
                         </div>
                         <div className="row">
                             <label htmlFor="tin-registered-date">TIN Registered Date*</label>
-                            <input type="date" id="tin-registered-date" name="tin-registered-date" required />
+                            <p><b>{dummyData.compliance.dates.tinRegistered}</b></p>
+
                         </div>
                         <div className="row">
                             <label htmlFor="business-vat">Business VAT No.*</label>
-                            <input type="text" id="business-vat" name="business-vat" required />
+                            <p><b>{dummyData.compliance.vat}</b></p>
+
                         </div>
                         <div className="row">
                             <label htmlFor="vat-registered-date">VAT Registered Date*</label>
-                            <input type="date" id="vat-registered-date" name="vat-registered-date" required />
+                            <p><b>{dummyData.compliance.dates.vatRegistered}</b></p>
+
                         </div>
                         <div className="row">
                             <label htmlFor="business-nis">Business NIS No.*</label>
-                            <input type="text" id="business-nis" name="business-nis" required />
+                            <p><b>{dummyData.compliance.nis}</b></p>
+
                         </div>
                         <div className="row">
                             <label htmlFor="nis-registered-date">NIS Registered Date*</label>
-                            <input type="date" id="nis-registered-date" name="nis-registered-date" required />
+                            <p><b>{dummyData.compliance.dates.nisRegistered}</b></p>
+
                         </div>
                         <div className="row">
                             <label htmlFor="business-registration-location">Business Registration Location*</label>
-                            <select id="business-registration-location" name="business-registration-location" required>
-                                <option value="">Select Location</option>
-                                <option value="guyana">Guyana</option>
-                                <option value="other">Other</option>
-                            </select>
+                            <p><b>{dummyData.compliance.registrationLocation}</b></p>
+
                         </div>
                         <div className="row">
                             <label htmlFor="date-business-commenced">Date Business Commenced*</label>
-                            <input type="date" id="date-business-commenced" name="date-business-commenced" required />
+                            <p><b>{dummyData.compliance.businessCommenced}</b></p>
+                            
                         </div>
                     
                         <div className='row'>
@@ -841,15 +965,14 @@ const SBRegistration = () =>{
                 </Containers>
 
                 <div className='btn-container'>
-                    <a className='btn btn-red' >Cancel</a>
-                    <button className='btn btn-green' type='submit'>Submit</button>
+                    <a className='btn btn-red'>Delete</a>
                 </div>
 
-            </form>
+            </div>
                 
 
         </div>
     );
 };
 
-export default SBRegistration;
+export default ClientReviewApp;
