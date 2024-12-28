@@ -15,7 +15,7 @@ const Welcome = () => {
                         <h2>Sign In.</h2>
                         <input type="email" name="email" placeholder="Email" />
                         <input type="password" name="pword" placeholder="********" />
-                        <button type="submit" className="btn-green">Sign In</button>
+                        <button type="submit" className=" btn btn-green">Sign In</button>
                     </form>
                 </div>
 
@@ -86,7 +86,7 @@ const Welcome = () => {
                             <option value="region-9">Region 9</option>
                             <option value="region-10">Region 10</option>
                         </select>
-                        <button type="submit" className="btn-green">Sign Up</button>
+                        <button type="submit" className="btn btn-green">Sign Up</button>
                     </form>
                 </div>
             </div>

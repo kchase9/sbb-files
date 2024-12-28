@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './header.css'; // For styling
 import Logo from '../../logo.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass, faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass, faChevronDown, faHouse, faPhone } from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
     const [activeDropdown, setActiveDropdown] = useState(null); // Tracks the active dropdown
@@ -28,7 +28,7 @@ const Header = () => {
     return (
         <header className="header">
             <div className="secondary-header">
-                <p>Lot 1, La Penitence, Georgetown | 226-8120/23/35</p>
+                <p><FontAwesomeIcon icon={faHouse} /> Lot 1, La Penitence, Georgetown | <FontAwesomeIcon icon={faPhone} /> 226-8120/23/35</p>
             </div>
             <div className="primary-header">
                 <div className="header_logo p-item">

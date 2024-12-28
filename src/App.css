@@ -41,10 +41,11 @@
 /* Personal CSS, global styling */
 
 .page{
-  padding: 86px 86px 180px 86px;
+  padding: 54px 86px 180px 86px;
   width: 100vw;
   height: 100vh;
   box-sizing: border-box;
+  color: #686868;
 }
 
 form {
@@ -70,7 +71,7 @@ form :is(input[type="text"], input[type="email"], input[type="password"], input[
   box-shadow: 0 0 4px rgba(0, 123, 255, 0.5); /* Optional focus shadow */
 }
 
-button{
+.btn{
   width: auto;
   align-self: center;
   padding: 10px 16px;
@@ -80,24 +81,25 @@ button{
   font-weight: 500;
   border: solid 1px;
   border-radius: 4px;
+  text-decoration: none;
 }
 
-button.btn-green{
+.btn-green{
   background-color: #1e865c;
   border-color: #124c34;
   color: white;
 }
-button.btn-orange{
+.btn-orange{
   background-color: #EF812D;
   border-color: #B46122;
   color: white;
 }
-button.btn-red{
+.btn-red{
   background-color: #D30004;
   border-color: #9D0003;
   color: white;
 }
-button.btn-gray{
+.btn-gray{
   background-color: #686868;
   border-color: #3a3a3a;
   color: white;
@@ -107,4 +109,43 @@ button.btn-gray{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.heading h1{
+  font-size: 36px;
+  font-family: 'EB Garamond', 'Times New Roman', Times, serif;
+  font-weight: 400;
+  margin: 12px 0;
+}
+
+.heading h2{
+  font-size: 28px;
+  font-family: 'EB Garamond', 'Times New Roman', Times, serif;
+  font-weight: 400;
+  margin: 12px 0;
+  color: black;
+}
+
+.heading p{
+  font-size: 16px;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+}
+
+.sect-container{
+  display: flex;
+  flex-direction: column;
+  margin-top: 48px;
+  padding: 24px;
+  background-color: white;
+  /* height: fit-content; */
+}
+
+.green-border {
+  border: 1px solid #1e865c;
+  border-radius: 4px; 
+}
+
+.orange-border {
+  border: 1px solid #EF812D;
+  border-radius: 4px; 
 }

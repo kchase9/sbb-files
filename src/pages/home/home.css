@@ -1,0 +1,6 @@
+.button-pair{
+    display: flex;
+    align-self: center;
+    margin-top: 24px;
+    gap: 16px;
+}

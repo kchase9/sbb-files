@@ -3,48 +3,36 @@ import './home.css'; // Include the corresponding CSS file for styling
 
 const Home = () => {
     return (
-        <div className="home-page">
-            {/* Hero Section */}
-            <section className="hero">
-                <div className="hero-content">
-                    <h1>Welcome to Our Website</h1>
-                    <p>Your journey begins here. Explore our offerings and discover what makes us unique.</p>
-                    <button className="btn-primary">Learn More</button>
+        <div className="home-page page">
+            <div className='heading'>
+                <h1>Welcome</h1>
+                <p>Manage your relationship with the Guyana Small Business Bureau</p>
+            </div>
+
+            <div className='sect-container green-border'>
+                <div className='heading'>
+                    <h2>Applications</h2>
                 </div>
-            </section>
 
-            {/* About Section */}
-            <section className="about">
-                <h2>About Us</h2>
-                <p>
-                    We are dedicated to providing the best solutions for your needs. With a focus on quality and innovation,
-                    we strive to exceed your expectations every step of the way.
-                </p>
-            </section>
+                {/* Make the application previews here */}
+            </div>
 
-            {/* Services Section */}
-            <section className="services">
-                <h2>Our Services</h2>
-                <div className="service-cards">
-                    <div className="service-card">
-                        <h3>Service 1</h3>
-                        <p>Brief description of the service offered.</p>
-                    </div>
-                    <div className="service-card">
-                        <h3>Service 2</h3>
-                        <p>Brief description of the service offered.</p>
-                    </div>
-                    <div className="service-card">
-                        <h3>Service 3</h3>
-                        <p>Brief description of the service offered.</p>
-                    </div>
+            <div className='sect-container orange-border'>
+                <div className='heading'>
+                    <h2>Documentation</h2>
+                    <small style={{color: "red"}}>Please be careful when submitting documentation, you can only submit once</small>
                 </div>
-            </section>
 
-            {/* Footer */}
-            <footer className="footer">
-                <p>&copy; {new Date().getFullYear()} Your Company. All rights reserved.</p>
-            </footer>
+                {/* Make the documentation previews here 
+                Looks something like forevery document, show an icon and the name below it*/}
+
+                <div className='button-pair'>
+                    <a href='' className='btn btn-green'>Request Document Change</a>
+                    <a href='' className='btn btn-green'>Add New Document</a>
+                </div>
+            </div>
+
+
         </div>
     );
 };
