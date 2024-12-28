@@ -31,6 +31,18 @@ const Home = () => {
                     <a href='' className='btn btn-green'>Add New Document</a>
                 </div>
             </div>
+            
+            <div>
+                <div className='heading'>
+                    <h2>Schedule Appointments</h2>
+                </div>
+                <div className='row'>
+                    <div className='sect'>
+                        How it works:
+                    </div>
+                    <div className='sect'>To schedule an appointment, click “Request Appointment” and fill out the required fields. After submitting a request, our staff will review the appointment schedule and approve/reject your request based on the availability of the relevant internal attendees.<br />Red appointments have been rejected.<br />Green appointments have been approved.<br />Yellow appointments are awaiting approval.</div>
+                </div>
+            </div>
 
 
         </div>
