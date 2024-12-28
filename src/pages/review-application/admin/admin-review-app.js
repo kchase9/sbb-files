@@ -964,9 +964,44 @@ const AdminReviewApp= () =>{
                     </div>
                 </Containers>
 
-                <div className='btn-container'>
-                    <a className='btn btn-red'>Delete</a>
-                </div>
+                {/* You need a section showing the relevant documents */}
+
+
+                <form>
+                    {/* Some hidden application ID value */}
+                    <div className=''>
+                        <div className='sect-container green-border list'>
+                            <div className='row'>
+                                <label htmlFor="application-status">
+                                    <h4>Application Status</h4>
+                                </label>
+                                <select id="application-status" name="application-status" required>
+                                    <option value="pending-review">Pending Review</option>
+                                    <option value="under-review">Under Review</option>
+                                    <option value="review-complete">Review Complete</option>
+                                </select>
+                            </div>
+                            <div className='row'>
+                                <label htmlFor="comments">
+                                    <h4>Comments</h4>
+                                </label>
+                                <textarea
+                                    id="comments"
+                                    name="comments"
+                                    rows="4"
+                                    placeholder="Enter comments here"
+                                ></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    {/* Save Button */}
+                    <div className='btn-container'>
+                        <button type="submit" className='btn btn-green'>Save</button>
+                    </div>
+                </form>
+                
+
+                
 
             </div>
                 
