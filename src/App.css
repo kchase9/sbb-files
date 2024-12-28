@@ -155,6 +155,18 @@ form :is(input[type="text"], input[type="email"], input[type="password"], input[
 
 .btn-container{
   display: flex;
-  justify-content: center;
-  gap: 12px;
+  align-self: center;
+  align-content: center;
+  margin-top: 24px;
+  gap: 16px;
+}
+
+.widget-col{
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
+.widget-col p{
+  margin: 4px 0 0 0;
 }

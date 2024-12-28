@@ -1,9 +1,0 @@
-.widget-col{
-    display: flex;
-    flex-direction: column;
-    align-self: center;
-}
-
-.widget-col p{
-    margin: 4px 0 0 0;
-}

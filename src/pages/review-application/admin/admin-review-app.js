@@ -997,6 +997,9 @@ const AdminReviewApp= () =>{
                     {/* Save Button */}
                     <div className='btn-container'>
                         <button type="submit" className='btn btn-green'>Save</button>
+                        <a href='/admin-home' className="btn btn-gray">
+                            Home
+                        </a>
                     </div>
                 </form>
                 

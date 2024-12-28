@@ -55,9 +55,15 @@ const RequestDocumentChange = () => {
                     </div>
 
                     {/* Submit Button */}
-                    <button type="submit" className="btn btn-green">
-                        Submit
-                    </button>
+                    <div className='btn-container'>
+                        <a href='/home' className="btn btn-gray">
+                            Home
+                        </a>
+                        <button type="submit" className="btn btn-green">
+                            Submit
+                        </button>
+                    </div>
+                    
                 </form>
             </div>
         </EditInfoLayout>

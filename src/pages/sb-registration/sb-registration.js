@@ -843,6 +843,9 @@ const SBRegistration = () =>{
                 <div className='btn-container'>
                     <a className='btn btn-red' >Cancel</a>
                     <button className='btn btn-green' type='submit'>Submit</button>
+                    <a href='/home' className="btn btn-gray">
+                        Home
+                    </a>
                 </div>
 
             </form>

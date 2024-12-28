@@ -27,6 +27,9 @@ const ReviewAppointment = () => {
                     <div className='btn-container'>
                         <button type="submit" className="btn btn-green">Accept</button>
                         <button type="button" className="btn btn-red">Reject</button>
+                        <a href='/admin-home' className="btn btn-gray">
+                            Home
+                        </a>
                     </div>
                 </form>
             </div>

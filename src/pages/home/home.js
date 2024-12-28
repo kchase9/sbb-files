@@ -1,10 +1,12 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFolder } from '@fortawesome/free-solid-svg-icons';
 import './home.css'; // Include the corresponding CSS file for styling
 
 const Home = () => {
     return (
         <div className="page">
-            <div className="home-page ">
+            <div className="home-page list">
                 <div className='heading'>
                     <h1>Welcome</h1>
                     <p>Manage your relationship with the Guyana Small Business Bureau</p>
@@ -13,8 +15,23 @@ const Home = () => {
                 <div className='sect-container green-border'>
                     <div className='heading'>
                         <h2>Applications</h2>
+                        <p>Review all applications here</p>
                     </div>
-
+                    <div className='app-nav row'>
+                        <div className='widget-col'>
+                            <h4>Small Business Registration Form</h4>
+                        </div>
+                        {/* IF  THIS APPLICATION EXISTS */}
+                        <div id='app-nav-btn' className='row btn-container'>
+                            <div className='widget-col'>
+                                <a href='/client-review-app' className='btn btn-green'>Review Application</a>
+                            </div>
+                            <div className='widget-col'>
+                                <a href='/sb-registration' className='btn btn-green'>See Application</a>
+                            </div>
+                        </div>
+                        
+                    </div>
                     {/* Make the application previews here */}
                 </div>
 
@@ -26,10 +43,17 @@ const Home = () => {
 
                     {/* Make the documentation previews here 
                     Looks something like forevery document, show an icon and the name below it*/}
+                    <div className='row'>
+                        <div className='sect-container green-border'>
+                            <FontAwesomeIcon icon={faFolder} />
+                            <p>Document 1</p>
+                        </div>
+                    </div>
+                    
 
-                    <div className='button-pair'>
-                        <a href='' className='btn btn-green'>Request Document Change</a>
-                        <a href='' className='btn btn-green'>Add New Document</a>
+                    <div className='btn-container'>
+                        <a href='/change-document' className='btn btn-green'>Request Document Change</a>
+                        <a href='/add-document' className='btn btn-green'>Add New Document</a>
                     </div>
                 </div>
                 
@@ -50,13 +74,13 @@ const Home = () => {
                         style={{ border: 0, width: "100%", height: "600px" }}
                     ></iframe>
 
-                    <div className='button-pair'>
-                        <a href='' className='btn btn-green'>Request Appointment</a>
+                    <div className='btn-container'>
+                        <a href='/request-appointment' className='btn btn-green'>Request Appointment</a>
                     </div>
                     </div>
                 </div>
 
-                <div>
+                <div className='plain-sect'>
                     <div className="heading">
                         <h2>Grants</h2>
                         <p>
@@ -67,44 +91,44 @@ const Home = () => {
 
                     <div className="side-by-side">
                         {/* <!-- Eligibility Section --> */}
-                        <div className="culumn">
-                        <div className="heading">
-                            <h2>Eligibility</h2>
-                        </div>
-                        <p>
-                            To be eligible for a small business development grant, the following requirements must be met:
-                        </p>
-                        <ul>
-                            <li>Unemployed or employed by a private sector or non-governmental organization.</li>
-                            <li>Owner(s) of a business or seeking to start a business.</li>
-                            <li>Registered client(s) of the Small Business Bureau.</li>
-                            <li>Submit copies of Business Registration, National Identification Card, and certificate of Tax Identification Number.</li>
-                            <li>Submit a complete business plan document (template provided by SBB).</li>
-                            <li>Submit quotations for items to be purchased with grant funding.</li>
-                            <li>Submit valid GRA and NIS compliance documents.</li>
-                        </ul>
+                            <div className="column">
+                            <div className="heading">
+                                <h2>Eligibility</h2>
+                            </div>
+                            <p>
+                                To be eligible for a small business development grant, the following requirements must be met:
+                            </p>
+                            <ul>
+                                <li>Unemployed or employed by a private sector or non-governmental organization.</li>
+                                <li>Owner(s) of a business or seeking to start a business.</li>
+                                <li>Registered client(s) of the Small Business Bureau.</li>
+                                <li>Submit copies of Business Registration, National Identification Card, and certificate of Tax Identification Number.</li>
+                                <li>Submit a complete business plan document (template provided by SBB).</li>
+                                <li>Submit quotations for items to be purchased with grant funding.</li>
+                                <li>Submit valid GRA and NIS compliance documents.</li>
+                            </ul>
                         </div>
 
                         {/* <!-- Grants Process Section --> */}
-                        <div className="culumn">
-                        <div className="heading">
-                            <h2>Grants Process</h2>
-                        </div>
-                        <ul>
-                            <li>Client(s) complete(s) grant application form and submits all required documents.</li>
-                            <li>SBB reviews application and documents and interviews client(s).</li>
-                            <li>SBB conducts a site visit of the business.</li>
-                            <li>SBB submits grant documents to the Grants Committee for review and approval.</li>
-                            <li>SBB informs client(s) of grant approval and invites client(s) to visit the office to sign the agreement.</li>
-                            <li>Grant payment prepared, approved, and disbursed to client(s).</li>
-                            <li>Client(s) submits receipts of items purchased with grant funding.</li>
-                            <li>SBB conducts monitoring and evaluation visits of the business.</li>
-                        </ul>
+                        <div className="column">
+                            <div className="heading">
+                                <h2>Grants Process</h2>
+                            </div>
+                            <ul>
+                                <li>Client(s) complete(s) grant application form and submits all required documents.</li>
+                                <li>SBB reviews application and documents and interviews client(s).</li>
+                                <li>SBB conducts a site visit of the business.</li>
+                                <li>SBB submits grant documents to the Grants Committee for review and approval.</li>
+                                <li>SBB informs client(s) of grant approval and invites client(s) to visit the office to sign the agreement.</li>
+                                <li>Grant payment prepared, approved, and disbursed to client(s).</li>
+                                <li>Client(s) submits receipts of items purchased with grant funding.</li>
+                                <li>SBB conducts monitoring and evaluation visits of the business.</li>
+                            </ul>
                         </div>
                     </div>
 
-                    <div className="button-pair">
-                        <a href="" className="btn btn-green">Business Plan/Grant Application Form</a>
+                    <div className="btn-container">
+                        <a href="https://sbb.gov.gy/wp-content/uploads/2021/06/Business-Plan-Grant-Application-Combined-Form-.pdf" className="btn btn-green">Business Plan/Grant Application Form</a>
                     </div>
                 </div>
 
@@ -126,7 +150,8 @@ const Home = () => {
                                     <p>Eligible</p>
                                 </div>
                                 <div>
-                                    <a href='' className='btn btn-green'>Apply</a>
+                                    {/* This sends a tick to the database to say "hey I'm interested" */}
+                                    <a href='' className='btn btn-green'>Indicate Interest</a>
                                 </div>
                             </div>
                                 

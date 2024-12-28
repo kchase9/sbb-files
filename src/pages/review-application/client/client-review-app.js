@@ -979,6 +979,9 @@ const ClientReviewApp= () =>{
 
                 <div className='btn-container'>
                     <a className='btn btn-red'>Delete</a>
+                    <a href='/home' className="btn btn-gray">
+                        Home
+                    </a>
                 </div>
 
             </div>
