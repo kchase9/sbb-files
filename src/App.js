@@ -26,7 +26,7 @@ function App() {
                 <Route path="/add-document" element={<AddDocument />} />
                 <Route path="/change-document" element={<RequestDocumentChange />} />
                 <Route path="/request-appointment" element={<RequestAppointment />} />
-                <Route path="/admin-review-appt" element={<ReviewAppointment />} />
+                <Route path="/admin-review-appt/:id" element={<ReviewAppointment />} />
                 <Route path="/sb-registration" element={<SBRegistration />} />
                 <Route path="/client-review-app" element={<ClientReviewApp />} />
                 <Route path="/admin-review-app/:id" element={<AdminReviewApp />} />

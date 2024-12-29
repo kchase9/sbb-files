@@ -1,101 +1,3 @@
-// import React from 'react';
-// import "./appt-schedules.css"
-// import ViewListLayout from "../../../templates/view-list-layout/view-list-layout.js";
-
-// const ApptSchedules = () =>{
-//     return (
-//         <ViewListLayout title='Appointment Schedule Request'>
-//             {/* figure out a for each when we have multiple applications */}
-//             <div className='list-view'>
-//                 <div className="sect-container green-border">
-//                     <div className="row">
-//                         {/* four sections: id name approval status button */}
-//                         <div className='widget-col'>
-//                             <strong>Business Name</strong>
-//                             <p>ABC Inc</p>
-//                         </div>
-//                         <div className='widget-col'>
-//                             <strong>Purpose</strong>
-//                             <p>Dogsledding...</p>
-//                         </div>
-//                         <div className='widget-col'>
-//                             <strong>Approval Status</strong>
-//                             <p>Rejected</p>
-//                         </div>
-//                         <div className='widget-col'>
-//                             <a href='/admin-review-appt' className='btn btn-green'>Review Application</a>
-//                         </div>
-//                     </div>
-//                 </div>
-
-//                 <div className="sect-container green-border">
-//                     <div className="row">
-//                         {/* four sections: id name approval status button */}
-//                         <div className='widget-col'>
-//                             <strong>Business Name</strong>
-//                             <p>ABC Inc</p>
-//                         </div>
-//                         <div className='widget-col'>
-//                             <strong>Purpose</strong>
-//                             <p>Dogsledding...</p>
-//                         </div>
-//                         <div className='widget-col'>
-//                             <strong>Approval Status</strong>
-//                             <p>Rejected</p>
-//                         </div>
-//                         <div className='widget-col'>
-//                             <a href='/admin-review-appt' className='btn btn-green'>Review Application</a>
-//                         </div>
-//                     </div>
-//                 </div>
-//                 <div className="sect-container green-border">
-//                     <div className="row">
-//                         {/* four sections: id name approval status button */}
-//                         <div className='widget-col'>
-//                             <strong>Business Name</strong>
-//                             <p>ABC Inc</p>
-//                         </div>
-//                         <div className='widget-col'>
-//                             <strong>Purpose</strong>
-//                             <p>Dogsledding...</p>
-//                         </div>
-//                         <div className='widget-col'>
-//                             <strong>Approval Status</strong>
-//                             <p>Rejected</p>
-//                         </div>
-//                         <div className='widget-col'>
-//                             <a href='/admin-review-appt' className='btn btn-green'>Review Application</a>
-//                         </div>
-//                     </div>
-//                 </div>
-//                 <div className="sect-container green-border">
-//                     <div className="row">
-//                         {/* four sections: id name approval status button */}
-//                         <div className='widget-col'>
-//                             <strong>Business Name</strong>
-//                             <p>ABC Inc</p>
-//                         </div>
-//                         <div className='widget-col'>
-//                             <strong>Purpose</strong>
-//                             <p>Dogsledding...</p>
-//                         </div>
-//                         <div className='widget-col'>
-//                             <strong>Approval Status</strong>
-//                             <p>Rejected</p>
-//                         </div>
-//                         <div className='widget-col'>
-//                             <a href='/admin-review-appt' className='btn btn-green'>Review Application</a>
-//                         </div>
-//                     </div>
-//                 </div>
-//             </div>
-            
-//         </ViewListLayout>
-//     );
-// };
-
-// export default ApptSchedules
-
 import React, { useState, useEffect } from 'react';
 import "./appt-schedules.css";
 import ViewListLayout from "../../../templates/view-list-layout/view-list-layout.js";
@@ -117,6 +19,7 @@ const ApptSchedules = () => {
                         'Content-Type': 'application/json'
                     }
                 });
+                console.log('made it');
                 
                 setAppointments(response.data.appointments || response.data);
                 setError(null);
@@ -130,6 +33,7 @@ const ApptSchedules = () => {
 
         fetchAppointments();
     }, []);
+
 
     if (loading) {
         return (
@@ -163,8 +67,8 @@ const ApptSchedules = () => {
                         <div key={appointment.id} className="sect-container green-border">
                             <div className="row">
                                 <div className='widget-col'>
-                                    <strong>Business Name</strong>
-                                    <p>{appointment.business_name || 'N/A'}</p>
+                                    <strong>Email</strong>
+                                    <p>{appointment.user_email || 'N/A'}</p>
                                 </div>
                                 <div className='widget-col'>
                                     <strong>Purpose</strong>
@@ -176,15 +80,7 @@ const ApptSchedules = () => {
                                 </div>
                                 <div className='widget-col'>
                                     <strong>Requested Date</strong>
-                                    <p>{appointment.preferred_date ? new Date(appointment.preferred_date).toLocaleDateString() : 'N/A'}</p>
-                                </div>
-                                <div className='widget-col'>
-                                    <strong>Contact Name</strong>
-                                    <p>{appointment.contact_name || 'N/A'}</p>
-                                </div>
-                                <div className='widget-col'>
-                                    <strong>Contact Email</strong>
-                                    <p>{appointment.contact_email || 'N/A'}</p>
+                                    <p>{appointment.appointment_date ? new Date(appointment.appointment_date).toLocaleDateString() : 'N/A'}</p>
                                 </div>
                                 <div className='widget-col'>
                                     <a 
