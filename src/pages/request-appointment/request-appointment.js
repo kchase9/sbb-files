@@ -299,7 +299,7 @@ const RequestAppointment = () => {
                     </div>
 
                     <div className="btn-container">
-                        <a href='/home' className="btn btn-gray">Home</a>
+                        <a href='/home' className="btn btn-gray">Cancel</a>
                         <button 
                             type="submit" 
                             className="btn btn-green"

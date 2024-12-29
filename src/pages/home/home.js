@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFolder, faEye } from '@fortawesome/free-solid-svg-icons';
 import './home.css'; // Include the corresponding CSS file for styling
+import ApplicationButtons from '../../components/applicationButtons/applicationButtons';
 
 const Home = () => {
     // Documents Section
@@ -92,14 +93,7 @@ const Home = () => {
                             <h4>Small Business Registration Form</h4>
                         </div>
                         {/* IF  THIS APPLICATION EXISTS */}
-                        <div id='app-nav-btn' className='row btn-container'>
-                            <div className='widget-col'>
-                                <a href='/client-review-app' className='btn btn-green'>Review Application</a>
-                            </div>
-                            <div className='widget-col'>
-                                <a href='/sb-registration' className='btn btn-green'>See Application</a>
-                            </div>
-                        </div>
+                        <ApplicationButtons />
                         
                     </div>
                     {/* Make the application previews here */}
