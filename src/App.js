@@ -22,18 +22,26 @@ function App() {
           <Header />
             <Routes>
                 <Route path="/" element={<Welcome />} />
+
+                {/* If you're signed in, admins go to admin-home, users go to home */}
+                {/* User Routes */}
                 <Route path="/home" element={<Home />} />
                 <Route path="/add-document" element={<AddDocument />} />
                 <Route path="/change-document" element={<RequestDocumentChange />} />
                 <Route path="/request-appointment" element={<RequestAppointment />} />
-                <Route path="/admin-review-appt/:id" element={<ReviewAppointment />} />
                 <Route path="/sb-registration" element={<SBRegistration />} />
                 <Route path="/client-review-app" element={<ClientReviewApp />} />
+
+                {/* Admin Routes */}
+                <Route path="/admin-review-appt/:id" element={<ReviewAppointment />} />
                 <Route path="/admin-review-app/:id" element={<AdminReviewApp />} />
                 <Route path="/admin-home" element={<AdminHome />} />
                 <Route path="/doc-change-review" element={<DocChange />} />
                 <Route path="/sbr-apps" element={<SBRApps />} />
                 <Route path="/appt-schedules" element={<ApptSchedules />} />
+
+                {/* any admin that wants to get a user url goes to /admin-home, and user that goes to admin url goes to /home */}
+
                 {/* Add other routes here */}
                 <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
