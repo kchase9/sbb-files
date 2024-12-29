@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 
 import React, { useState, useEffect } from 'react';
 import EditInfoLayout from '../../templates/edit-info-layout/edit-info-layout.js';
@@ -13,6 +14,7 @@ const RequestDocumentChange = () => {
     const [loading, setLoading] = useState(false);
     const [userId, setUserId] = useState(null);
     const [availableDocuments, setAvailableDocuments] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         // Get user ID from token
@@ -89,6 +91,8 @@ const RequestDocumentChange = () => {
             setFile(null);
             const fileInput = document.querySelector('input[type="file"]');
             if (fileInput) fileInput.value = '';
+
+            navigate('home');
         } catch (err) {
             console.error('Error:', err);
             setError(err.message);
