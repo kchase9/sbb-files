@@ -1,9 +1,79 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFolder } from '@fortawesome/free-solid-svg-icons';
+import { faFolder, faEye } from '@fortawesome/free-solid-svg-icons';
 import './home.css'; // Include the corresponding CSS file for styling
 
 const Home = () => {
+    // Documents Section
+    const [documents, setDocuments] = useState([]);
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchDocuments = async () => {
+            try {
+                const userId = JSON.parse(atob(localStorage.getItem('token').split('.')[1])).userId;
+                const response = await fetch(`http://localhost:5000/api/document-store/user/${userId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch documents');
+                }
+
+                const data = await response.json();
+                setDocuments(data.documents);
+            } catch (err) {
+                console.error('Error fetching documents:', err);
+                setError('Failed to load documents');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchDocuments();
+    }, []);
+
+    const viewDocument = async (documentId) => {
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                throw new Error('No authentication token found');
+            }
+            
+            // Create URL with token
+            const url = `http://localhost:5000/api/document-store/${documentId}`;
+            
+            // Open in new window with authorization header
+            const newWindow = window.open('about:blank', '_blank');
+            if (newWindow) {
+                // Create a fetch request to get the document
+                const response = await fetch(url, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch document');
+                }
+
+                // Get the blob data
+                const blob = await response.blob();
+                const objectUrl = URL.createObjectURL(blob);
+
+                // Navigate the new window to the object URL
+                newWindow.location.href = objectUrl;
+            } else {
+                setError('Pop-up blocked. Please allow pop-ups to view documents.');
+            }
+        } catch (err) {
+            console.error('Error viewing document:', err);
+            setError('Failed to view document');
+        }
+    };
     return (
         <div className="page">
             <div className="home-page list">
@@ -38,18 +108,50 @@ const Home = () => {
                 <div className='sect-container orange-border'>
                     <div className='heading'>
                         <h2>Documentation</h2>
-                        <small style={{culor: "red"}}>Please be careful when submitting documentation, you can only submit once</small>
+                        <small style={{color: "red"}}>Please be careful when submitting documentation, you can only submit once</small>
                     </div>
 
-                    {/* Make the documentation previews here 
-                    Looks something like forevery document, show an icon and the name below it*/}
-                    <div className='row'>
-                        <div className='sect-container green-border'>
-                            <FontAwesomeIcon icon={faFolder} />
-                            <p>Document 1</p>
+                    {loading ? (
+                        <p>Loading documents...</p>
+                    ) : error ? (
+                        <p className="error-message">{error}</p>
+                    ) : (
+                        <div className='row' style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', padding: '20px' }}>
+                            {documents.map((doc) => (
+                                <div 
+                                    key={doc.id} 
+                                    className='sect-container green-border'
+                                    style={{ 
+                                        display: 'flex', 
+                                        flexDirection: 'column', 
+                                        alignItems: 'center',
+                                        padding: '15px',
+                                        minWidth: '150px',
+                                        cursor: 'pointer'
+                                    }}
+                                    onClick={() => viewDocument(doc.id)}
+                                >
+                                    <FontAwesomeIcon 
+                                        icon={faFolder} 
+                                        size="2x" 
+                                        style={{ marginBottom: '10px' }}
+                                    />
+                                    <p style={{ textAlign: 'center', marginBottom: '10px' }}>
+                                        {doc.document_type}
+                                    </p>
+                                    <button 
+                                        className="btn btn-orange"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            viewDocument(doc.id);
+                                        }}
+                                    >
+                                        View
+                                    </button>
+                                </div>
+                            ))}
                         </div>
-                    </div>
-                    
+                    )}
 
                     <div className='btn-container'>
                         <a href='/change-document' className='btn btn-green'>Request Document Change</a>
