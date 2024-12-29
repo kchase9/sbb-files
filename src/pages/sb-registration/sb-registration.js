@@ -109,18 +109,18 @@ const SBRegistration = () =>{
 
       const [errors, setErrors] = useState({});
 
-    const [owners, setOwners] = useState([
+      const [owners, setOwners] = useState([
         {
             id: 1,
-            fullName: '',
-            maritalStatus: '',
-            positionTitle: '',
+            full_name: '',          // Changed from fullName to full_name to match backend
+            marital_status: '',     // Changed from maritalStatus to marital_status
+            position_title: '',     // Changed from positionTitle to position_title
             gender: '',
             tin: '',
             birthdate: '',
-            differentlyAbled: '',
-            idNumber: '',
-            educationLevel: '',
+            differently_abled: '',  // Changed from differentlyAbled to differently_abled
+            id_number: '',         // Changed from idNumber to id_number
+            education_level: '',    // Changed from educationLevel to education_level
         },
     ]);
 
@@ -130,36 +130,43 @@ const SBRegistration = () =>{
             ...owners,
             {
                 id: owners.length + 1,
-                fullName: '',
-                maritalStatus: '',
-                positionTitle: '',
+                full_name: '',
+                marital_status: '',
+                position_title: '',
                 gender: '',
                 tin: '',
                 birthdate: '',
-                differentlyAbled: '',
-                idNumber: '',
-                educationLevel: '',
+                differently_abled: '',
+                id_number: '',
+                education_level: '',
             },
         ]);
     };
 
     // Function to remove the last owner entry
-    const removeOwnerEntry = () => {
+    // Remove the last owner
+    const removeLastOwner = () => {
         if (owners.length > 1) {
             setOwners(owners.slice(0, -1));
+        }
+    };
+
+// Remove a specific owner by ID
+    const removeSpecificOwner = (id) => {
+        if (owners.length > 1) {
+            setOwners(owners.filter(owner => owner.id !== id));
         } else {
             alert('At least one owner must be listed.');
         }
     };
 
-    // Function to handle changes for individual owner fields
+// Handle changes for owner fields
     const handleOwnerChange = (id, field, value) => {
-        setOwners(
-            owners.map((owner) =>
-                owner.id === id ? { ...owner, [field]: value } : owner
-            )
-        );
+        setOwners(owners.map(owner =>
+            owner.id === id ? { ...owner, [field]: value } : owner
+        ));
     };
+
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -186,172 +193,113 @@ const SBRegistration = () =>{
           }));
         }
       };
-      const handleSubmit = async (e) => {
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        
+    
         try {
+            const userId = JSON.parse(atob(localStorage.getItem('token').split('.')[1])).userId;
+    
+            // Prepare registration data
+            const registrationData = {
+                user_id: userId,
+                business_name: formData.business_name,
+                trading_name: formData.trading_name,
+                registration_type: formData.registration_type.join(', '),
+                registration_type_other: formData.registration_type_other,
+                primary_contact_name: formData.primary_contact_name,
+                primary_contact_phone: formData.primary_contact_phone,
+                primary_contact_email: formData.primary_contact_email,
+                secondary_contact_name: formData.secondary_contact_name,
+                secondary_contact_phone: formData.secondary_contact_phone,
+                secondary_contact_email: formData.secondary_contact_email,
+                physical_address: formData.physical_address,
+                business_tin: formData.business_tin,
+                tin_registered_date: formData.tin_registered_date,
+                business_vat: formData.business_vat,
+                vat_registered_date: formData.vat_registered_date,
+                business_nis: formData.business_nis,
+                nis_registered_date: formData.nis_registered_date,
+                business_registration_location: formData.business_registration_location,
+                date_business_commenced: formData.date_business_commenced,
+                compliance_history_paye_number: formData.compliance_history_paye_number,
+                compliance_history_income_tax_number: formData.compliance_history_income_tax_number,
+                compliance_history_vat_number: formData.compliance_history_vat_number,
+                compliance_history_nis_number: formData.compliance_history_nis_number,
+                declaration_primary_name: formData.declaration_primary_name,
+                declaration_primary_signature: formData.declaration_primary_signature,
+                declaration_primary_date: formData.declaration_primary_date,
+                declaration_primary_position: formData.declaration_primary_position,
+                declaration_secondary_name: formData.declaration_secondary_name,
+                declaration_secondary_signature: formData.declaration_secondary_signature,
+                declaration_secondary_date: formData.declaration_secondary_date,
+                declaration_secondary_position: formData.declaration_secondary_position,
+                business_email: formData.business_email,
+                business_phone: formData.business_phone,
+                business_outline: formData.business_outline,
+                primary_business_sector: formData.primary_business_sector,
+            };
+    
+            console.log('Submitting registration data:', registrationData);
+        
+        const registrationResponse = await axios.post('/api/registrations', registrationData);
+        console.log('Registration response:', registrationResponse);
 
-          const userId = JSON.parse(atob(localStorage.getItem('token').split('.')[1])).userId;
-          console.log('Extracted User ID:', userId);
-          const tokenPayload = JSON.parse(atob(localStorage.getItem('token').split('.')[1]));
-          console.log('Token Payload:', tokenPayload);
-
-
-          const registrationData = {
-            user_id: userId,
-            // Business Information (Section A)
-            business_name: formData.business_name,
-            trading_name: formData.trading_name,
-            registration_type: formData.registration_type.join(', '),
-            registration_type_other: formData.registration_type_other,
-            primary_contact_name: formData.primary_contact_name,
-            primary_contact_phone: formData.primary_contact_phone,
-            primary_contact_email: formData.primary_contact_email,
-            secondary_contact_name: formData.secondary_contact_name,
-            secondary_contact_phone: formData.secondary_contact_phone,
-            secondary_contact_email: formData.secondary_contact_email,
-            physical_address: formData.physical_address,
-            business_tin: formData.business_tin,
-            tin_registered_date: formData.tin_registered_date,
-            nis_registered_date: formData.nis_registered_date,
-
-            declaration_primary_name: formData.declaration_primary_name,
-            declaration_primary_signature: formData.declaration_primary_signature,
-            declaration_primary_date: formData.declaration_primary_date,
-            declaration_primary_position: formData.declaration_primary_position,
-
-            declaration_secondary_name: formData.declaration_secondary_name,
-            declaration_secondary_signature: formData.declaration_secondary_signature,
-            declaration_secondary_position: formData.declaration_secondary_position,
-            declaration_secondary_date: formData.declaration_secondary_date,
-
-            business_nis: formData.tin_registered_date,
-            administrative_region: formData.business_nis,
-            trading_address: formData.trading_address,
-            mailing_address: formData.mailing_address,
-            business_email: formData.business_email,
-            business_website: formData.business_website,
-            business_phone: formData.business_phone,
-            primary_business_sector: formData.primary_business_sector,
-            business_outline: formData.business_outline,
-            industry_types: formData.industry_types.join(', '),
-            industry_type_other: formData.industry_type_other,
-      
-            // Section E: Qualification Data
-            full_time_employees: formData.full_time_employees,
-            full_time_employees_female: formData.full_time_employees_female,
-            full_time_employees_youth: formData.full_time_employees_youth,
-            full_time_employees_differently_abled: formData.full_time_employees_differently_abled,
-            
-            part_time_employees: formData.part_time_employees,
-            part_time_employees_female: formData.part_time_employees_female,
-            part_time_employees_youth: formData.part_time_employees_youth,
-            part_time_employees_differently_abled: formData.part_time_employees_differently_abled,
-            
-            gross_sales_previous: formData.gross_sales_previous,
-            gross_sales_projection: formData.gross_sales_projection,
-            net_business_assets: formData.net_business_assets,
-            
-            // Section F: Survey Data
-            survey_data: {
-              sbb_client: formData.sbb_client,
-              sbb_interactions: formData.sbb_interactions,
-              services: {
-                selected_services: formData.services,
-                grant_funding: formData.services.includes('grant-funding') ? {
-                  amount: parseFloat(formData.grant_amount)
-                } : null,
-                training: formData.services.includes('training') ? {
-                  type: formData.training_type
-                } : null,
-                loan_funding: formData.services.includes('loan-funding') ? {
-                  amount: parseFloat(formData.loan_amount)
-                } : null
-              },
-              business_challenges: {
-                challenges: formData.challenges,
-                other_challenges: formData.other_challenges
-              }
-            },
-            // Business Declaration (Previously Wrapped)
-            business_vat: formData.business_vat,
-            vat_registered_date: formData.vat_registered_date,
-            business_registration_location: formData.business_registration_location,
-            date_business_commenced: formData.date_business_commenced,
-            compliance_history_paye_number: formData.compliance_history_paye_number,
-            compliance_history_income_tax_number: formData.compliance_history_income_tax_number,
-            compliance_history_vat_number: formData.compliance_history_vat_number,
-            compliance_history_nis_number: formData.compliance_history_nis_number,
-            owned_controlled: formData.owned_controlled === 'no',
-            subsidiary_affiliate: formData.subsidiary_affiliate === 'no',
-            charitable_political: formData.charitable_political === 'no',
-
-            // Section G: Business Declaration
-            business_declaration: {
-              owned_controlled: formData.owned_controlled === 'yes',
-              subsidiary_affiliate: formData.subsidiary_affiliate === 'yes',
-              charitable_political: formData.charitable_political === 'yes',
-              declaration: {
-                primary: {
-                  name: formData.declaration_primary_name,
-                  signature: formData.declaration_primary_signature,
-                  position: formData.declaration_primary_position,
-                  date: formData.declaration_primary_date
-                },
-                secondary: formData.declaration_secondary_name ? {
-                  name: formData.declaration_secondary_name,
-                  signature: formData.declaration_secondary_signature,
-                  position: formData.declaration_secondary_position,
-                  date: formData.declaration_secondary_date
-                } : null
-              }
-            },
-            
-            // Format license data
-            license: {
-              name: formData.license_name,
-              number: formData.license_number,
-              expiration_date: formData.license_expiration,
-              details: formData.license_details
-            },
-            
-            // Format dealership data
-            dealerships: [
-              {
-                dealership_id: formData.dealership_id_1,
-                contact_person: formData.dealership_contact_person_1,
-                contact_phone: formData.dealership_contact_phone_1,
-                contact_email: formData.dealership_contact_email_1,
-                appointed_date: formData.dealership_appointed_date_1,
-                type_products: formData.dealership_type_products_1
-              },
-              {
-                dealership_id: formData.dealership_id_2,
-                contact_person: formData.dealership_contact_person_2,
-                contact_phone: formData.dealership_contact_phone_2,
-                contact_email: formData.dealership_contact_email_2,
-                appointed_date: formData.dealership_appointed_date_2,
-                type_products: formData.dealership_type_products_2
-              }
-            ].filter(dealership => dealership.dealership_id)
-          };
-      
-          const response = await axios.post('/api/registrations', registrationData, {
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          });
-      
-          if (response.status === 201) {
-            alert('Registration submitted successfully!');
-            navigate('/home')
-          }
-        } catch (error) {
-          console.error('Error submitting registration:', error);
-          alert('An error occurred while submitting the registration. Please try again.');
+        if (registrationResponse.status !== 201) {
+            throw new Error('Failed to submit registration data');
         }
-      };
 
+        const registrationId = registrationResponse.data.id;
+
+        // Submit each owner individually
+        for (const owner of owners) {
+            const ownerData = {
+                registration_id: registrationId,
+                full_name: owner.full_name,
+                marital_status: owner.marital_status,
+                position_title: owner.position_title,
+                gender: owner.gender,
+                tin: owner.tin,
+                birthdate: owner.birthdate,
+                differently_abled: owner.differently_abled === 'yes',
+                id_number: owner.id_number,
+                education_level: owner.education_level
+            };
+
+            console.log('Submitting owner data:', ownerData);
+
+            try {
+                const ownerResponse = await axios.post('/api/owners', ownerData, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                console.log('Owner submission response:', ownerResponse);
+            } catch (ownerError) {
+                console.error('Error submitting owner:', ownerError);
+                throw new Error(`Failed to submit owner ${owner.full_name}: ${ownerError.response?.data?.error || ownerError.message}`);
+            }
+        }
+
+        alert('Registration and all owners submitted successfully!');
+        navigate('/home');
+
+    } catch (error) {
+        console.error('Full error object:', error);
+        console.error('Error response data:', error.response?.data);
+        console.error('Error response status:', error.response?.status);
+        
+        let errorMessage = 'An error occurred while submitting the registration.';
+        if (error.response?.data?.error) {
+            errorMessage += ` ${error.response.data.error}`;
+        } else if (error.message) {
+            errorMessage += ` ${error.message}`;
+        }
+        
+        alert(errorMessage);
+    }
+};
+    
     return (
         <div className='page'>
             <div className="heading">
@@ -991,7 +939,7 @@ const SBRegistration = () =>{
                     </div>
                     </Containers>
 
-                <Containers title="Section C: Business Ownership Information">
+                {/* <Containers title="Section C: Business Ownership Information">
                 <p>Enter primary owner information first. All owners must be listed.<br /></p>
                 <div id="owners-section" className="list">
                     {owners.map((owner, index) => (
@@ -1016,7 +964,7 @@ const SBRegistration = () =>{
                         <select
                             id={`owner_marital_status_${owner.id}`}
                             name={`owner_marital_status_${owner.id}`}
-                            value={owner.marital_status}
+                            placeholder={owner.maritalStatus}
                             onChange={(e) =>
                             handleOwnerChange(owner.id, 'marital_status', e.target.value)
                             }
@@ -1036,7 +984,7 @@ const SBRegistration = () =>{
                             type="text"
                             id={`owner_position_title_${owner.id}`}
                             name={`owner_position_title_${owner.id}`}
-                            value={owner.position_title}
+                            placeholder={owner.positionTitle}
                             onChange={(e) =>
                             handleOwnerChange(owner.id, 'position_title', e.target.value)
                             }
@@ -1096,7 +1044,7 @@ const SBRegistration = () =>{
                         <select
                             id={`owner_differently_abled_${owner.id}`}
                             name={`owner_differently_abled_${owner.id}`}
-                            value={owner.differently_abled}
+                            placeholder={owner.differentlyAbled}
                             onChange={(e) =>
                             handleOwnerChange(owner.id, 'differently_abled', e.target.value)
                             }
@@ -1114,7 +1062,7 @@ const SBRegistration = () =>{
                             type="text"
                             id={`owner_id_number_${owner.id}`}
                             name={`owner_id_number_${owner.id}`}
-                            value={owner.id_number}
+                            placeholder={owner.idNumber}
                             onChange={(e) =>
                             handleOwnerChange(owner.id, 'id_number', e.target.value)
                             }
@@ -1129,7 +1077,7 @@ const SBRegistration = () =>{
                         <select
                             id={`owner_education_level_${owner.id}`}
                             name={`owner_education_level_${owner.id}`}
-                            value={owner.education_level}
+                            placeholder={owner.educationLevel}
                             onChange={(e) =>
                             handleOwnerChange(owner.id, 'education_level', e.target.value)
                             }
@@ -1166,8 +1114,192 @@ const SBRegistration = () =>{
                     </button>
                     </div>
                 </div>
-                </Containers>
+                </Containers> */}
+                {/* Section C: Business Ownership Information */}
+                <Containers title="Section C: Business Ownership Information">
+                    <p>Enter primary owner information first. All owners must be listed. All fields marked with * are required.</p>
+                    <div id="owners-section" className="list">
+                        {owners.map((owner, index) => (
+                            <div key={owner.id} className="owner-entry list">
+                                <h4>Owner {index + 1}</h4>
+                                
+                                {/* Full Name */}
+                                <div className="row">
+                                    <label htmlFor={`owner_full_name_${owner.id}`}>Full Name*</label>
+                                    <input
+                                        type="text"
+                                        id={`owner_full_name_${owner.id}`}
+                                        name={`owner_full_name_${owner.id}`}
+                                        value={owner.full_name}
+                                        onChange={(e) => handleOwnerChange(owner.id, 'full_name', e.target.value)}
+                                        required
+                                        placeholder="Enter full legal name"
+                                    />
+                                </div>
 
+                                {/* Marital Status */}
+                                <div className="row">
+                                    <label htmlFor={`owner_marital_status_${owner.id}`}>Marital Status*</label>
+                                    <select
+                                        id={`owner_marital_status_${owner.id}`}
+                                        name={`owner_marital_status_${owner.id}`}
+                                        value={owner.marital_status}
+                                        onChange={(e) => handleOwnerChange(owner.id, 'marital_status', e.target.value)}
+                                        required
+                                    >
+                                        <option value="">Select Marital Status</option>
+                                        <option value="single">Single</option>
+                                        <option value="married">Married</option>
+                                        <option value="divorced">Divorced</option>
+                                        <option value="widowed">Widowed</option>
+                                    </select>
+                                </div>
+
+                                {/* Position Title */}
+                                <div className="row">
+                                    <label htmlFor={`owner_position_title_${owner.id}`}>Position Title*</label>
+                                    <input
+                                        type="text"
+                                        id={`owner_position_title_${owner.id}`}
+                                        name={`owner_position_title_${owner.id}`}
+                                        value={owner.position_title}
+                                        onChange={(e) => handleOwnerChange(owner.id, 'position_title', e.target.value)}
+                                        required
+                                        placeholder="e.g., CEO, Director, Manager"
+                                    />
+                                </div>
+
+                                {/* Gender */}
+                                <div className="row">
+                                    <label htmlFor={`owner_gender_${owner.id}`}>Gender*</label>
+                                    <select
+                                        id={`owner_gender_${owner.id}`}
+                                        name={`owner_gender_${owner.id}`}
+                                        value={owner.gender}
+                                        onChange={(e) => handleOwnerChange(owner.id, 'gender', e.target.value)}
+                                        required
+                                    >
+                                        <option value="">Select Gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="non-binary">Non-Binary</option>
+                                        <option value="prefer-not-to-say">Prefer not to say</option>
+                                    </select>
+                                </div>
+
+                                {/* TIN */}
+                                <div className="row">
+                                    <label htmlFor={`owner_tin_${owner.id}`}>Tax Identification Number (TIN)*</label>
+                                    <input
+                                        type="text"
+                                        id={`owner_tin_${owner.id}`}
+                                        name={`owner_tin_${owner.id}`}
+                                        value={owner.tin}
+                                        onChange={(e) => handleOwnerChange(owner.id, 'tin', e.target.value)}
+                                        required
+                                        placeholder="Enter TIN number"
+                                    />
+                                </div>
+
+                                {/* Birthdate */}
+                                <div className="row">
+                                    <label htmlFor={`owner_birthdate_${owner.id}`}>Date of Birth*</label>
+                                    <input
+                                        type="date"
+                                        id={`owner_birthdate_${owner.id}`}
+                                        name={`owner_birthdate_${owner.id}`}
+                                        value={owner.birthdate}
+                                        onChange={(e) => handleOwnerChange(owner.id, 'birthdate', e.target.value)}
+                                        required
+                                    />
+                                </div>
+
+                                {/* Differently Abled */}
+                                <div className="row">
+                                    <label htmlFor={`owner_differently_abled_${owner.id}`}>Differently Abled*</label>
+                                    <select
+                                        id={`owner_differently_abled_${owner.id}`}
+                                        name={`owner_differently_abled_${owner.id}`}
+                                        value={owner.differently_abled}
+                                        onChange={(e) => handleOwnerChange(owner.id, 'differently_abled', e.target.value)}
+                                        required
+                                    >
+                                        <option value="">Select Option</option>
+                                        <option value="yes">Yes</option>
+                                        <option value="no">No</option>
+                                    </select>
+                                </div>
+
+                                {/* ID Number */}
+                                <div className="row">
+                                    <label htmlFor={`owner_id_number_${owner.id}`}>National ID Number*</label>
+                                    <input
+                                        type="text"
+                                        id={`owner_id_number_${owner.id}`}
+                                        name={`owner_id_number_${owner.id}`}
+                                        value={owner.id_number}
+                                        onChange={(e) => handleOwnerChange(owner.id, 'id_number', e.target.value)}
+                                        required
+                                        placeholder="Enter national ID number"
+                                    />
+                                </div>
+
+                                {/* Education Level */}
+                                <div className="row">
+                                    <label htmlFor={`owner_education_level_${owner.id}`}>Highest Level of Education Completed*</label>
+                                    <select
+                                        id={`owner_education_level_${owner.id}`}
+                                        name={`owner_education_level_${owner.id}`}
+                                        value={owner.education_level}
+                                        onChange={(e) => handleOwnerChange(owner.id, 'education_level', e.target.value)}
+                                        required
+                                    >
+                                        <option value="">Select Education Level</option>
+                                        <option value="primary">Primary School</option>
+                                        <option value="secondary">Secondary School</option>
+                                        <option value="technical_vocational">Technical/Vocational</option>
+                                        <option value="associate">Associate Degree</option>
+                                        <option value="bachelor">Bachelor's Degree</option>
+                                        <option value="master">Master's Degree</option>
+                                        <option value="doctorate">Doctorate</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+
+                                {index !== 0 && (
+                                    <div className="row">
+                                        <button
+                                            type="button"
+                                            className="btn btn-red"
+                                            onClick={() => removeSpecificOwner(owner.id)}
+                                        >
+                                            Remove This Owner
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                        ))}
+
+                        <div className="row button-group">
+                            <button
+                                type="button"
+                                className="btn btn-gray"
+                                onClick={addOwnerEntry}
+                            >
+                                Add Another Owner
+                            </button>
+                            {owners.length > 1 && (
+                                <button
+                                    type="button"
+                                    className="btn btn-gray"
+                                    onClick={removeLastOwner}
+                                >
+                                    Remove Last Owner
+                                </button>
+                            )}
+                        </div>
+                    </div>
+                </Containers>
                 <Containers title="Section D: Core Business Activities">
                 <p>
                     D.1-2 - Enter standards compliance/operational licensing only if the compliance/license is still valid.<br />
