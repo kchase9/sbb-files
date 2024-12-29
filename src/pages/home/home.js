@@ -108,7 +108,8 @@ const Home = () => {
                 <div className='sect-container orange-border'>
                     <div className='heading'>
                         <h2>Documentation</h2>
-                        <small style={{color: "red"}}>Please be careful when submitting documentation, you can only submit once</small>
+                        <small style={{color: "red"}}>Please be careful when submitting documentation, you can only submit once<br /></small>
+                        <small style={{color: "red"}}>Old documentation will be removed when documentation change has been approved</small>
                     </div>
 
                     {loading ? (
