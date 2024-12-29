@@ -283,10 +283,6 @@ const DocChange = () => {
                         <div key={request.id} className="sect-container green-border">
                             <div className="row">
                                 <div className='widget-col'>
-                                    <strong>Request ID</strong>
-                                    <p>{request.id || 'N/A'}</p>
-                                </div>
-                                <div className='widget-col'>
                                     <strong>User Name</strong>
                                     <p>{request.user_name || 'N/A'}</p>
                                 </div>
@@ -294,24 +290,6 @@ const DocChange = () => {
                                     <strong>Document Type</strong>
                                     <p>{request.document_type || 'N/A'}</p>
                                 </div>
-                                <div className='widget-col'>
-                                    <div className="btn-container">
-                                        <button 
-                                            onClick={() => handleApprove(request.id)}
-                                            className="btn btn-green"
-                                        >
-                                            Approve
-                                        </button>
-                                        <button 
-                                            onClick={() => handleReject(request.id)}
-                                            className="btn btn-gray"
-                                        >
-                                            Reject
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row mt-4">
                                 <div className='widget-col'>
                                     <strong>Reason</strong>
                                     <p>{request.reason}</p>
@@ -328,6 +306,23 @@ const DocChange = () => {
                                 <div className='widget-col'>
                                     <strong>Requested Date</strong>
                                     <p>{new Date(request.requested_at).toLocaleDateString() || 'N/A'}</p>
+                                </div>
+                                
+                                <div className='widget-col'>
+                                    <div className="btn-container">
+                                        <button 
+                                            onClick={() => handleApprove(request.id)}
+                                            className="btn btn-green"
+                                        >
+                                            Approve
+                                        </button>
+                                        <button 
+                                            onClick={() => handleReject(request.id)}
+                                            className="btn btn-gray"
+                                        >
+                                            Reject
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
