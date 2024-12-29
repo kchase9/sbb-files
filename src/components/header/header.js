@@ -25,6 +25,28 @@ const Header = () => {
         setActiveDropdown((prev) => (prev === dropdown ? null : dropdown)); // Toggle dropdown
     };
 
+    const signOut = async () => {
+        try {
+        const token = localStorage.getItem('token');
+        if (token) {
+            // Call backend to blacklist the token
+            await fetch('http://localhost:5000/api/users/signout', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+            });
+        }
+        } catch (error) {
+        console.error('Error during sign out:', error);
+        } finally {
+        // Always clear local storage and redirect, even if the API call fails
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        window.location.href = '/login';
+        }
+    };
+
     return (
         <header className="header">
             <div className="secondary-header">
@@ -102,6 +124,10 @@ const Header = () => {
                 </nav>
                 <div className="search p-item">
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
+                </div>
+
+                <div>
+                    <a onClick={() => signOut()} className='btn btn-orange'>Sign Out</a>
                 </div>
             </div>
         </header>
