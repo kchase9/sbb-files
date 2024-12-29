@@ -171,16 +171,6 @@ const SBRApps = () => {
                                     <p>{app.status || 'Pending'}</p>
                                 </div>
                                 <div className='widget-col'>
-                                    <a 
-                                        href={`/admin-review-app/${app.id}`} 
-                                        className='btn btn-green'
-                                    >
-                                        Review Application
-                                    </a>
-                                </div>
-                            </div>
-                            <div className="row mt-4">
-                                <div className='widget-col'>
                                     <strong>Contact Name</strong>
                                     <p>{app.primary_contact_name || 'N/A'}</p>
                                 </div>
@@ -191,6 +181,14 @@ const SBRApps = () => {
                                 <div className='widget-col'>
                                     <strong>Submission Date</strong>
                                     <p>{new Date(app.created_at).toLocaleDateString() || 'N/A'}</p>
+                                </div>
+                                <div className='widget-col'>
+                                    <a 
+                                        href={`/admin-review-app/${app.id}`} 
+                                        className='btn btn-green'
+                                    >
+                                        Review Application
+                                    </a>
                                 </div>
                             </div>
                         </div>
