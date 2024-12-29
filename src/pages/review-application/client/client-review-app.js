@@ -992,3 +992,367 @@
 // };
 
 // export default ClientReviewApp;
+// -----------------------------------------------------------------------------------------------------------------------------------------------
+// import React, { useState, useEffect } from 'react';
+// import axios from 'axios';
+// import Containers from '../../../components/containers/containers.js';
+// import './client-review-app.css';
+
+// const ClientReviewApp = () => {
+//     const [registrationData, setRegistrationData] = useState(null);
+//     const [loading, setLoading] = useState(true);
+//     const [error, setError] = useState(null);
+
+//     useEffect(() => {
+//         const fetchRegistrationData = async () => {
+//             try {
+//                 const response = await axios.get('/api/registrations'); // Replace with your API endpoint
+//                 setRegistrationData(response.data);
+//                 setLoading(false);
+//             } catch (err) {
+//                 setError('Failed to fetch registration data. Please try again.');
+//                 setLoading(false);
+//             }
+//         };
+
+//         fetchRegistrationData();
+//     }, []);
+
+//     if (loading) {
+//         return <div>Loading...</div>;
+//     }
+
+//     if (error) {
+//         return <div>{error}</div>;
+//     }
+
+//     if (!registrationData) {
+//         return <div>No registration data available.</div>;
+//     }
+
+//     return (
+//         <div className="page">
+//             <div className="heading">
+//                 <h1>Small Business Registration Review</h1>
+//                 <p>Review the details below</p>
+//             </div>
+
+//             {/* Section A: Business Information */}
+//             <Containers title="Section A: Business Information">
+//                 <div className="list">
+//                     <div className="row">
+//                         <label>Business Name:</label>
+//                         <p><b>{registrationData.business_name || 'N/A'}</b></p>
+//                     </div>
+//                     <div className="row">
+//                         <label>Trading Name:</label>
+//                         <p><b>{registrationData.trading_name || 'N/A'}</b></p>
+//                     </div>
+//                     <div className="row">
+//                         <label>Registration Type:</label>
+//                         <p><b>{registrationData.registration_type?.join(', ') || 'N/A'}</b></p>
+//                     </div>
+//                     <div className="row">
+//                         <label>Primary Contact Name:</label>
+//                         <p><b>{registrationData.primary_contact_name || 'N/A'}</b></p>
+//                     </div>
+//                     <div className="row">
+//                         <label>Primary Contact Phone:</label>
+//                         <p><b>{registrationData.primary_contact_phone || 'N/A'}</b></p>
+//                     </div>
+//                     <div className="row">
+//                         <label>Primary Contact Email:</label>
+//                         <p><b>{registrationData.primary_contact_email || 'N/A'}</b></p>
+//                     </div>
+//                     <div className="row">
+//                         <label>Secondary Contact Name:</label>
+//                         <p><b>{registrationData.secondary_contact_name || 'N/A'}</b></p>
+//                     </div>
+//                     <div className="row">
+//                         <label>Secondary Contact Phone:</label>
+//                         <p><b>{registrationData.secondary_contact_phone || 'N/A'}</b></p>
+//                     </div>
+//                     <div className="row">
+//                         <label>Secondary Contact Email:</label>
+//                         <p><b>{registrationData.secondary_contact_email || 'N/A'}</b></p>
+//                     </div>
+//                     <div className="row">
+//                         <label>Physical Address:</label>
+//                         <p><b>{registrationData.physical_address || 'N/A'}</b></p>
+//                     </div>
+//                     <div className="row">
+//                         <label>Administrative Region:</label>
+//                         <p><b>{registrationData.administrative_region || 'N/A'}</b></p>
+//                     </div>
+//                     <div className="row">
+//                         <label>Trading Address:</label>
+//                         <p><b>{registrationData.trading_address || 'N/A'}</b></p>
+//                     </div>
+//                     <div className="row">
+//                         <label>Mailing Address:</label>
+//                         <p><b>{registrationData.mailing_address || 'N/A'}</b></p>
+//                     </div>
+//                     <div className="row">
+//                         <label>Business Email:</label>
+//                         <p><b>{registrationData.business_email || 'N/A'}</b></p>
+//                     </div>
+//                     <div className="row">
+//                         <label>Business Website:</label>
+//                         <p><b>{registrationData.business_website || 'N/A'}</b></p>
+//                     </div>
+//                     <div className="row">
+//                         <label>Business Phone:</label>
+//                         <p><b>{registrationData.business_phone || 'N/A'}</b></p>
+//                     </div>
+//                     <div className="row">
+//                         <label>Primary Business Sector:</label>
+//                         <p><b>{registrationData.primary_business_sector || 'N/A'}</b></p>
+//                     </div>
+//                     <div className="row">
+//                         <label>Business Outline:</label>
+//                         <p><b>{registrationData.business_outline || 'N/A'}</b></p>
+//                     </div>
+//                     <div className="row">
+//                         <label>Industry Types:</label>
+//                         <p><b>{registrationData.industry_types?.join(', ') || 'N/A'}</b></p>
+//                     </div>
+//                 </div>
+//             </Containers>
+
+//             {/* Section B: Compliance Information */}
+//             <Containers title="Section B: Registration and Compliance History">
+//                 <div className="list">
+//                     <div className="row">
+//                         <label>Business TIN:</label>
+//                         <p><b>{registrationData.business_tin || 'N/A'}</b></p>
+//                     </div>
+//                     <div className="row">
+//                         <label>TIN Registered Date:</label>
+//                         <p><b>{registrationData.tin_registered_date || 'N/A'}</b></p>
+//                     </div>
+//                     <div className="row">
+//                         <label>NIS Registered Date:</label>
+//                         <p><b>{registrationData.nis_registered_date || 'N/A'}</b></p>
+//                     </div>
+//                 </div>
+//             </Containers>
+
+//             {/* Section C: Ownership Information */}
+//             <Containers title="Section C: Business Ownership Information">
+//                 <div id="owners-section" className="list">
+//                     {registrationData.ownership && registrationData.ownership.length > 0 ? (
+//                         registrationData.ownership.map((owner, index) => (
+//                             <div key={owner.id} className="owner-entry">
+//                                 <h4>Owner {index + 1}</h4>
+//                                 <div className="row">
+//                                     <label>Full Name:</label>
+//                                     <p><b>{owner.fullName || 'N/A'}</b></p>
+//                                 </div>
+//                                 <div className="row">
+//                                     <label>Position Title:</label>
+//                                     <p><b>{owner.positionTitle || 'N/A'}</b></p>
+//                                 </div>
+//                                 <div className="row">
+//                                     <label>Gender:</label>
+//                                     <p><b>{owner.gender || 'N/A'}</b></p>
+//                                 </div>
+//                                 <div className="row">
+//                                     <label>TIN:</label>
+//                                     <p><b>{owner.tin || 'N/A'}</b></p>
+//                                 </div>
+//                             </div>
+//                         ))
+//                     ) : (
+//                         <p>No ownership data available.</p>
+//                     )}
+//                 </div>
+//             </Containers>
+
+//             {/* Additional Sections */}
+//             {/* Add additional sections here dynamically */}
+
+//             <div className="btn-container">
+//                 <a className="btn btn-red" href="/delete">Delete</a>
+//                 <a className="btn btn-gray" href="/home">Home</a>
+//             </div>
+//         </div>
+//     );
+// };
+
+// export default ClientReviewApp;
+
+
+import React, { useState, useEffect } from 'react';
+import Containers from '../../../components/containers/containers.js';
+import './client-review-app.css';
+import axios from 'axios';
+
+const ClientReviewApp = () => {
+    const [registrationData, setRegistrationData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            throw new Error('Token not found in localStorage');
+        }
+
+        const fetchData = async () => {
+            try {
+                const userId = JSON.parse(atob(localStorage.getItem('token').split('.')[1])).userId;
+
+                console.log('User ID:', userId);
+                const response = await fetch(`http://localhost:5000/api/registrations/user/${userId}`,
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        }
+                    }
+                );
+                if (!response.ok) throw new Error('Failed to fetch registration data');
+
+                const data = await response.json();
+                setRegistrationData(data);
+            } catch (err) {
+                console.error('Error fetching registration data:', err.message);
+                setError('Failed to fetch registration data.');
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchData();
+    }, []);
+
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>{error}</p>;
+
+    const renderField = (label, value) => (
+        <div className="row">
+            <label>{label}</label>
+            <p><b>{value || 'N/A'}</b></p>
+        </div>
+    );
+
+    return (
+        <div className='page'>
+            <div className="heading">
+                <h1>Small Business Registration Review</h1>
+                <p>Review submitted registration details below.</p>
+            </div>
+
+            <Containers title="Section A: Business Information">
+                {renderField('Business Name', registrationData.business_name)}
+                {renderField('Trading Name', registrationData.trading_name)}
+                {renderField('Primary Contact Name', registrationData.primary_contact_name)}
+                {renderField('Primary Contact Phone', registrationData.primary_contact_phone)}
+                {renderField('Primary Contact Email', registrationData.primary_contact_email)}
+                {renderField('Physical Address', registrationData.physical_address)}
+                {renderField('Administrative Region', registrationData.administrative_region)}
+                {renderField('Trading Address', registrationData.trading_address)}
+                {renderField('Mailing Address', registrationData.mailing_address)}
+                {renderField('Business Email', registrationData.business_email)}
+                {renderField('Business Website', registrationData.business_website)}
+                {renderField('Primary Business Sector', registrationData.primary_business_sector)}
+                {renderField('Business Outline', registrationData.business_outline)}
+            </Containers>
+
+            <Containers title="Section B: Registration and Compliance History">
+                {renderField('Business TIN', registrationData.business_tin)}
+                {renderField('TIN Registered Date', registrationData.tin_registered_date)}
+                {renderField('VAT Number', registrationData.business_vat)}
+                {renderField('VAT Registered Date', registrationData.vat_registered_date)}
+                {renderField('NIS Number', registrationData.business_nis)}
+                {renderField('NIS Registered Date', registrationData.nis_registered_date)}
+                {renderField('Business Registration Location', registrationData.business_registration_location)}
+                {renderField('Date Business Commenced', registrationData.date_business_commenced)}
+            </Containers>
+
+            <Containers title="Section C: Business Ownership">
+                {registrationData.owners.map((owner, index) => (
+                    <div key={index} className="owner-entry">
+                        <h4>Owner {index + 1}</h4>
+                        {renderField('Full Name', owner.fullName)}
+                        {renderField('Marital Status', owner.maritalStatus)}
+                        {renderField('Position Title', owner.positionTitle)}
+                        {renderField('Gender', owner.gender)}
+                        {renderField('TIN', owner.tin)}
+                        {renderField('Birthdate', owner.birthdate)}
+                        {renderField('Differently Abled', owner.differentlyAbled)}
+                        {renderField('ID Number', owner.idNumber)}
+                        {renderField('Education Level', owner.educationLevel)}
+                    </div>
+                ))}
+            </Containers>
+
+            <Containers title="Section D: Core Business Activities">
+                {renderField('Compliance Standard Name', registrationData.license?.name)}
+                {renderField('Compliance Standard Number', registrationData.license?.number)}
+                {renderField('License Expiration Date', registrationData.license?.expiration_date)}
+                {renderField('License Details', registrationData.license?.details)}
+                {registrationData.dealerships.map((dealership, index) => (
+                    <div key={index} className="dealership-entry">
+                        <h4>Authorized Dealership {index + 1}</h4>
+                        {renderField('Dealership ID', dealership.dealership_id)}
+                        {renderField('Contact Person', dealership.contact_person)}
+                        {renderField('Contact Phone', dealership.contact_phone)}
+                        {renderField('Contact Email', dealership.contact_email)}
+                        {renderField('Date Appointed', dealership.appointed_date)}
+                        {renderField('Products Covered', dealership.type_products)}
+                    </div>
+                ))}
+            </Containers>
+
+            <Containers title="Section E: Qualification Data">
+                {renderField('Full-Time Employees', registrationData.full_time_employees)}
+                {renderField('Female Full-Time Employees', registrationData.full_time_employees_female)}
+                {renderField('Youth Full-Time Employees', registrationData.full_time_employees_youth)}
+                {renderField('Differently Abled Full-Time Employees', registrationData.full_time_employees_differently_abled)}
+                {renderField('Part-Time Employees', registrationData.part_time_employees)}
+                {renderField('Female Part-Time Employees', registrationData.part_time_employees_female)}
+                {renderField('Youth Part-Time Employees', registrationData.part_time_employees_youth)}
+                {renderField('Differently Abled Part-Time Employees', registrationData.part_time_employees_differently_abled)}
+                {renderField('Gross Sales (Previous Year)', registrationData.gross_sales_previous)}
+                {renderField('Gross Sales (Projection)', registrationData.gross_sales_projection)}
+                {renderField('Net Business Assets', registrationData.net_business_assets)}
+            </Containers>
+
+            <Containers title="Section F: Survey Data">
+                {renderField('Current SBB Client', registrationData.survey_data?.sbb_client)}
+                {renderField('SBB Interactions', registrationData.survey_data?.sbb_interactions)}
+                {registrationData.survey_data?.services.selected_services.map((service, index) => (
+                    renderField(`Service ${index + 1}`, service)
+                ))}
+                {renderField('Grant Amount', registrationData.survey_data?.services.grant_funding?.amount)}
+                {renderField('Training Type', registrationData.survey_data?.services.training?.type)}
+                {renderField('Loan Amount', registrationData.survey_data?.services.loan_funding?.amount)}
+                {registrationData.survey_data?.business_challenges?.challenges.map((challenge, index) => (
+                    renderField(`Challenge ${index + 1}`, challenge)
+                ))}
+                {renderField('Other Challenges', registrationData.survey_data?.business_challenges?.other_challenges)}
+            </Containers>
+
+            <Containers title="Section G: Business Declaration">
+                {renderField('Owned and Controlled by Shareholders', registrationData.business_declaration?.owned_controlled ? 'Yes' : 'No')}
+                {renderField('Subsidiary or Affiliate', registrationData.business_declaration?.subsidiary_affiliate ? 'Yes' : 'No')}
+                {renderField('Charitable or Political Purpose', registrationData.business_declaration?.charitable_political ? 'Yes' : 'No')}
+                {renderField('Primary Applicant Name', registrationData.business_declaration?.declaration?.primary?.name)}
+                {renderField('Primary Applicant Signature', registrationData.business_declaration?.declaration?.primary?.signature)}
+                {renderField('Primary Applicant Position', registrationData.business_declaration?.declaration?.primary?.position)}
+                {renderField('Primary Applicant Date', registrationData.business_declaration?.declaration?.primary?.date)}
+                {renderField('Secondary Applicant Name', registrationData.business_declaration?.declaration?.secondary?.name)}
+                {renderField('Secondary Applicant Signature', registrationData.business_declaration?.declaration?.secondary?.signature)}
+                {renderField('Secondary Applicant Position', registrationData.business_declaration?.declaration?.secondary?.position)}
+                {renderField('Secondary Applicant Date', registrationData.business_declaration?.declaration?.secondary?.date)}
+            </Containers>
+
+            <div className='btn-container'>
+                <a className='btn btn-red'>Delete</a>
+                <a href='/home' className='btn btn-gray'>Home</a>
+            </div>
+        </div>
+    );
+};
+
+export default ClientReviewApp;

@@ -190,7 +190,15 @@ const SBRegistration = () =>{
         e.preventDefault();
         
         try {
+
+          const userId = JSON.parse(atob(localStorage.getItem('token').split('.')[1])).userId;
+          console.log('Extracted User ID:', userId);
+          const tokenPayload = JSON.parse(atob(localStorage.getItem('token').split('.')[1]));
+          console.log('Token Payload:', tokenPayload);
+
+
           const registrationData = {
+            user_id: userId,
             // Business Information (Section A)
             business_name: formData.business_name,
             trading_name: formData.trading_name,
