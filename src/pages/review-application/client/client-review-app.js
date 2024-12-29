@@ -114,7 +114,8 @@ const ClientReviewApp = () => {
 
     const handleDelete = async () => {
         try {
-            await axios.delete(`/api/registrations/${registrationData.id}`, {
+            console.log('Registration ID to delete:', registrationData.id);
+            await axios.delete(`http://localhost:5000/api/registrations/${registrationData.id}`, {
                 headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
             });
             alert('Registration deleted successfully.');
@@ -196,7 +197,7 @@ const ClientReviewApp = () => {
 
             <div className="btn-container">
                 <button className="btn btn-red" onClick={handleDelete}>Delete</button>
-                <a href="/home" className="btn btn-gray">Home</a>
+                <a href="/home" className="btn btn-gray">Back</a>
             </div>
         </div>
     );

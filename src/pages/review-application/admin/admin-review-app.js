@@ -64,6 +64,8 @@ const AdminReviewApp= () =>{
     });
 
     const { id } = useParams();
+    const [reviewStatus, setReviewStatus] = useState('pending');
+    const [reviewComment, setReviewComment] = useState('');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -117,15 +119,39 @@ const AdminReviewApp= () =>{
         </div>
     );
 
-    const handleDelete = async () => {
+    const handleReviewSubmit = async (e) => {
+        e.preventDefault();
+        
         try {
-            await axios.delete(`/api/registrations/${registrationData.id}`, {
-                headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+            const token = localStorage.getItem('token');
+            if (!token) throw new Error('No token found');
+    
+            // Get the reviewer's user ID from the token
+            const reviewerId = JSON.parse(atob(token.split('.')[1])).userId;
+    
+            // First, create the review record
+            const reviewResponse = await axios.post('http://localhost:5000/api/reviews', {
+                registration_id: id,
+                status: reviewStatus,
+                reviewer_comment: reviewComment
+            }, {
+                headers: { 'Authorization': `Bearer ${token}` }
             });
-            alert('Registration deleted successfully.');
-            window.location.href = '/home';
+    
+            if (reviewResponse.status === 201) {
+                // Now update the registration status
+                await axios.patch(`http://localhost:5000/api/registrations/${id}/status`, {
+                    status: reviewStatus
+                }, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+    
+                alert('Review submitted successfully!');
+                window.location.href = '/sbr-apps';
+            }
         } catch (err) {
-            alert('Failed to delete registration.');
+            console.error('Error submitting review:', err);
+            alert('Failed to submit review. Please try again.');
         }
     };
 
@@ -199,10 +225,46 @@ const AdminReviewApp= () =>{
                 {renderField('Secondary Applicant Date', registrationData.declaration_secondary_date)}
             </Containers>
 
-            <div className="btn-container">
-                {/* Add an onclick */}
-                <a href="/sbr-apps" className="btn btn-green" >save</a>
-            </div>
+            <Containers title='Review'>
+                <form className='list' onSubmit={handleReviewSubmit}>
+                    <div className='row'>
+                        <h4>Comment</h4>
+                        <div className='widget-col'>
+                            <textarea 
+                                className='form-control' 
+                                name='comment' 
+                                rows='5' 
+                                cols='50'
+                                value={reviewComment}
+                                onChange={(e) => setReviewComment(e.target.value)}
+                                required
+                            />
+                        </div>
+                    </div>
+                    <div className='row'>
+                        <h4>Status</h4>
+                        <div className='widget-col'>
+                            <select 
+                                className='form-control' 
+                                name='status'
+                                value={reviewStatus}
+                                onChange={(e) => setReviewStatus(e.target.value)}
+                                required
+                            >
+                                <option value='pending'>Pending</option>
+                                <option value='approved'>Approved</option>
+                                <option value='rejected'>Rejected</option>
+                            </select>
+                        </div>
+                    </div> 
+                    <div className="btn-container">
+                        <button type="submit" className="btn btn-green">Save</button>
+                        <a href="/sbr-apps" className="btn btn-gray">Cancel</a>
+                    </div>
+                </form>
+            </Containers>
+
+           
         </div>
     );
 };

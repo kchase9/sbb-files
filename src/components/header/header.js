@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './header.css'; // For styling
 import Logo from '../../logo.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass, faChevronDown, faHouse, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass, faChevronDown, faHouse, faPhone, faPowerOff } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
     const [activeDropdown, setActiveDropdown] = useState(null); // Tracks the active dropdown
@@ -21,11 +22,13 @@ const Header = () => {
         };
     }, []);
 
+    const navigate = useNavigate();
+
     const toggleDropdown = (dropdown) => {
         setActiveDropdown((prev) => (prev === dropdown ? null : dropdown)); // Toggle dropdown
     };
 
-    const signOut = async () => {
+    const navReset = async () => {
         try {
         const token = localStorage.getItem('token');
         if (token) {
@@ -36,6 +39,9 @@ const Header = () => {
                 'Authorization': `Bearer ${token}`,
             },
             });
+        }
+        else{
+            navigate('/');
         }
         } catch (error) {
         console.error('Error during sign out:', error);
@@ -127,7 +133,7 @@ const Header = () => {
                 </div>
 
                 <div>
-                    <a onClick={() => signOut()} className='btn btn-orange'>Sign Out</a>
+                    <a onClick={() => navReset()}><FontAwesomeIcon icon={faPowerOff} /></a>
                 </div>
             </div>
         </header>

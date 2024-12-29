@@ -20,7 +20,8 @@ const ViewListLayout = ({title, children}) =>{
                                 className="search-input orange-border"
                         />
                         </div>
-                        <div className='searchbar-button'>
+                        <div className='searchbar-button btn-container'>
+                        <a href="/admin-home" className="btn btn-gray">Home</a>
                             <button className="btn btn-green">Search</button>
                         </div>
                     </form>
