@@ -155,6 +155,30 @@ const Welcome = () => {
         }));
     };
 
+    // const handleSignInSubmit = async (e) => {
+    //     e.preventDefault();
+    //     try {
+    //         const response = await fetch('http://localhost:5000/api/users/login', {
+    //             method: 'POST',
+    //             headers: { 'Content-Type': 'application/json' },
+    //             body: JSON.stringify(signInData),
+    //         });
+    //         const data = await response.json();
+            
+    //         if (response.ok) {
+    //             // Store token in localStorage
+    //             localStorage.setItem('token', data.token);
+    //             localStorage.setItem('user', JSON.stringify(data.user));
+    //             setMessage({ type: 'success', text: 'Sign-in successful!' });
+    //             window.location.href = '/home'; // or use React Router
+    //         } else {
+    //             setMessage({ type: 'error', text: data.error || 'Sign-in failed' });
+    //         }
+    //     } catch (err) {
+    //         setMessage({ type: 'error', text: 'Error connecting to the server' });
+    //     }
+    // };
+
     const handleSignInSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -166,15 +190,23 @@ const Welcome = () => {
             const data = await response.json();
             
             if (response.ok) {
-                // Store token in localStorage
+                // Store all user data
                 localStorage.setItem('token', data.token);
-                localStorage.setItem('user', JSON.stringify(data.user));
+                localStorage.setItem('user', JSON.stringify(data.user)); // Store the entire user object
+                localStorage.setItem('id', data.user.id);
+                localStorage.setItem('email', data.user.email);
+                localStorage.setItem('role', data.user.role);
+                localStorage.setItem('full_name', data.user.full_name);
+                
                 setMessage({ type: 'success', text: 'Sign-in successful!' });
-                window.location.href = '/home'; // or use React Router
+                
+                // Redirect based on role
+                window.location.href = data.user.role === 'admin' ? '/admin-home' : '/home';
             } else {
                 setMessage({ type: 'error', text: data.error || 'Sign-in failed' });
             }
         } catch (err) {
+            console.error('Login error:', err);
             setMessage({ type: 'error', text: 'Error connecting to the server' });
         }
     };

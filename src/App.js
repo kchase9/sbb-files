@@ -74,6 +74,9 @@ function App() {
   // Mock authentication status and role
   const isAuthenticated = localStorage.getItem('token') ? true : false;
   const userRole = isAuthenticated ? localStorage.getItem('role') || 'user' : null;
+  console.log(localStorage.getItem('email'));
+  console.log(localStorage.getItem('id'));
+  console.log(userRole);
 
   return (
     <Router>
