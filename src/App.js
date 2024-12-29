@@ -29,7 +29,7 @@ function App() {
                 <Route path="/admin-review-appt" element={<ReviewAppointment />} />
                 <Route path="/sb-registration" element={<SBRegistration />} />
                 <Route path="/client-review-app" element={<ClientReviewApp />} />
-                <Route path="/admin-review-app" element={<AdminReviewApp />} />
+                <Route path="/admin-review-app/:id" element={<AdminReviewApp />} />
                 <Route path="/admin-home" element={<AdminHome />} />
                 <Route path="/doc-change-review" element={<DocChange />} />
                 <Route path="/sbr-apps" element={<SBRApps />} />
