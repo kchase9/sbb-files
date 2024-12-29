@@ -92,7 +92,7 @@ const RequestDocumentChange = () => {
             const fileInput = document.querySelector('input[type="file"]');
             if (fileInput) fileInput.value = '';
 
-            navigate('home');
+            navigate('/home');
         } catch (err) {
             console.error('Error:', err);
             setError(err.message);

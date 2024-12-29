@@ -11,7 +11,7 @@
     background-color: #EF812D;
     padding: 0px 15px;
     margin: 0px;
-    font-size: 15px;
+    font-size: 13px;
 }
 
 .secondary-header p{
@@ -39,7 +39,7 @@
 .primary-header a{
     text-decoration: none;
     color: #444444;
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 500;
 }
 
